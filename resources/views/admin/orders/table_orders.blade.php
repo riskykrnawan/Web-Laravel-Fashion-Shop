@@ -1,7 +1,7 @@
-<h2>Orders</h2>
+<h4>Orders</h4>
 <div class="table-responsive">
   <table class="table table-striped table-sm">
-    <thead>
+    <thead class="">
       <tr>
         <th scope="col">Item</th>
         <th scope="col">User</th>
@@ -10,22 +10,22 @@
         <th scope="col">Date Transaction</th>
         <th scope="col">Update at</th>
         <th scope="col">Status</th>
+        <th></th>
       </tr>
     </thead>
-    <tbody>
-      @foreach ($orders as $order)   
-        <tr class="">
-          <td><a class="link-dark" href="/admin/products/show/{{ $order->item->id }}">{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</a></td>
-          <td><a class="link-dark" href="/admin/users/show/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
-          <td>{{ $order->quantity }}</td>
+    <tbody class="">
+      @foreach ($orders as $order)
+        <tr>
+          <td class="py-3"><a class="link-dark" href="/admin/products/show/{{ $order->item->id }}">{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</a></td>
+          <td class="py-3"><a class="link-dark" href="/admin/users/show/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
+          <td class="py-3">{{ $order->quantity }}</td>
           @php
             $totalPrice = $order->item->price * $order->quantity;
             @endphp
-          <td>Rp{{ number_format($totalPrice,2, ',', '.') }}</td>
-          <td>{{ $order->created_at }}</td>
-          <td>{{ $order->updated_at }}</td>
-          <th>{{ $order->status }}</th>
-          
+          <td class="py-3">Rp{{ number_format($totalPrice,2, ',', '.') }}</td>
+          <td class="py-3">{{ $order->created_at }}</td>
+          <td class="py-3">{{ $order->updated_at }}</td>
+          <th class="py-3">{{ $order->status }}</th>
           <td>
             @if ($order->status == 'pending')
               <form action="/admin/orders/changeStatus/{{ $order->id }}" method="post">
@@ -36,8 +36,9 @@
               </form>
             @endif
           </td>
-        </tr>  
+        </tr>
       @endforeach
+
     </tbody>
   </table>
     @if ($orders->hasPages())

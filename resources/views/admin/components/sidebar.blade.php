@@ -21,19 +21,22 @@
       <li class="nav-item">
         <a class="nav-link text-light" href="/admin/products">
           <span data-feather="shopping-cart" class="align-text-bottom text-light"></span>
-          Products <span class="badge text-bg-danger float-end">1</span>
+          Products 
+          {{-- <span class="badge text-bg-danger float-end">1</span> --}}
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light" href="/admin/orders">
           <span data-feather="file" class="align-text-bottom text-light"></span>
-          Orders <span class="badge text-bg-danger float-end">4</span>
+          Orders 
+          <span class="badge text-bg-danger float-end">{{ $pendingOrders }}</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-light" href="/admin/users">
           <span data-feather="users" class="align-text-bottom text-light"></span>
-          Users <span class="badge text-bg-danger float-end">2</span>
+          Users 
+          {{-- <span class="badge text-bg-danger float-end">2</span> --}}
         </a>
       </li>
       <li class="nav-item">

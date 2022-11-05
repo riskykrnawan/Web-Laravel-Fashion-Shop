@@ -18,9 +18,8 @@ class UserController extends Controller
 
         // mengirim data dari table users ke view index
         return view('admin.users.index', [
-            'id' => 'Sebuah Id Akun',
             'users' => $users,
-            'name' => 'Sebuah nama',
+            'pendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -30,7 +29,8 @@ class UserController extends Controller
         return view('admin.users.show',
             [
                 'id' => $id,
-                'users' => $users
+                'users' => $users,
+                'pendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -40,7 +40,8 @@ class UserController extends Controller
         $user = DB::table('users')->where('id', $id)->first();
 
         return view('admin.users.update', [
-            'user' => $user
+            'user' => $user,
+            'pendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 

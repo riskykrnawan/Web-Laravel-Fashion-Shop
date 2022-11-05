@@ -9,17 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    public static function pendingOrders() {
+        $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
+        return count($pendingOrders);
+    }
     public function index()
     {
         // mengambil data dari table orders
-        // $orders = DB::table('orders')->orderByDesc('updated_at')->paginate(10);
         $orders = Order::with(['Item', 'User'])->paginate(20);
-
-        // mengirim data dari table orders ke view index
+        $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
         return view('admin.orders.index', [
-            'id' => 'Sebuah Id Akun',
             'orders' => $orders,
-            'name' => 'Sebuah nama',
+            'pendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -31,5 +32,4 @@ class OrderController extends Controller
 
         return redirect('/admin/orders');
     }
-
 }

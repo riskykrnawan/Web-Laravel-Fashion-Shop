@@ -56,17 +56,22 @@ Route::middleware(['auth'])->prefix('/admin')->group(function (){
     Route::controller(UserController::class)->prefix('/users')->group(function() {
         Route::get('/', 'index');
         Route::get('/show/{id}', 'show');
-        Route::get('/create', 'create');
+        // Route::get('/create', 'create');
         Route::get('/edit/{id}', 'edit');
         Route::post('/update', 'update');
-        Route::post('/store', 'store');
-        Route::get('/delete/{id}', 'delete');
+        // Route::post('/store', 'store');
+        // Route::get('/delete/{id}', 'delete');
     });
     Route::controller(OrderController::class)->prefix('/orders')->group(function() {
         Route::get('/', 'index');
         Route::post('/changeStatus/{id}', 'changeStatus');
     });
     Route::get('/dashboard', function () {
-        return view('admin.dashboard.index');
+        return view(
+            'admin.dashboard.index',
+            [
+                'pendingOrders' => OrderController::pendingOrders(),
+            ]
+        );
     });
 });

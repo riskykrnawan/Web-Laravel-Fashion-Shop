@@ -8,7 +8,9 @@
   font-size: 35px; 
   font-family: 'Bebas Neue', cursive;
 }
-
+.front {
+  z-index: 999;
+}
 .text-small {
   font-size: 12px;
 }

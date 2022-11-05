@@ -13,26 +13,10 @@ class ItemController extends Controller
 {
     public function index()
     {
-    //     $client = new Client();
-    //     $url = "http://localhost:8000/api/admin/products";
-    //     $response = $client->request('GET', $url, [
-    //         'verify'  => false,
-    //     ]);
-    //     echo $response;
-
-        // return $response;
-
-        // return view('home', [
-        //     'route' => Request::route()->getName(),
-        //     'title' => 'NIKKY',
-        //     'items' => $response,
-        //     'banners' => Banner::all(),
-        // ]);
         $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
         return view('admin.products.index', [
-            'id' => 'Sebuah Id Akun',
             'items' => $items,
-            'name' => 'Sebuah nama',
+            'pendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -42,13 +26,19 @@ class ItemController extends Controller
         return view('admin.products.show',
             [
                 'id' => $id,
-                'items' => $items
+                'items' => $items,
+                'pendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
 
     public function create() {
-        return view('admin.products.create');
+        return view(
+            'admin.products.create',
+            [
+                'pendingOrders' => OrderController::pendingOrders(),
+            ]
+        );
     }
     
     public function store(Request $request) {
@@ -87,7 +77,8 @@ class ItemController extends Controller
         $item = DB::table('items')->where('id', $id)->first();
 
         return view('admin.products.update', [
-            'item' => $item
+            'item' => $item,
+            'pendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
