@@ -3,7 +3,6 @@
   <table class="table table-striped table-sm">
     <thead>
       <tr>
-        {{-- <th scope="col">#</th> --}}
         <th scope="col">Item</th>
         <th scope="col">User</th>
         <th scope="col">Quantity</th>
@@ -15,9 +14,9 @@
     </thead>
     <tbody>
       @foreach ($orders as $order)   
-        <tr>
-          <td>{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</td>
-          <td>{{ $order->user->name }}</td>
+        <tr class="">
+          <td><a class="link-dark" href="/admin/products/show/{{ $order->item->id }}">{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</a></td>
+          <td><a class="link-dark" href="/admin/users/show/{{ $order->user->id }}">{{ $order->user->name }}</a></td>
           <td>{{ $order->quantity }}</td>
           @php
             $totalPrice = $order->item->price * $order->quantity;
@@ -26,6 +25,17 @@
           <td>{{ $order->created_at }}</td>
           <td>{{ $order->updated_at }}</td>
           <th>{{ $order->status }}</th>
+          
+          <td>
+            @if ($order->status == 'pending')
+              <form action="/admin/orders/changeStatus/{{ $order->id }}" method="post">
+                {{ csrf_field() }}
+                {{-- <input type="hidden" name="id" value="{{ $order->id }}"> --}}
+                <button type="submit" name="status" class="border-0 bg-transparent" value="success"><i class="bi bi-check-lg fs-3 text-success"></i> </button>
+                <button type="submit" name="status" class="border-0 bg-transparent" value="failed"><i class="bi bi-x text-danger fs-3"></i> </button>
+              </form>
+            @endif
+          </td>
         </tr>  
       @endforeach
     </tbody>

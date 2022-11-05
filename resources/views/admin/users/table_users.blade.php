@@ -26,9 +26,10 @@
           <td>{{ $user->created_at }}</td>
           <td>{{ $user->updated_at }}</td>          
           <td>
-            <a href=""><button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i> Detail</button></a>
+            <a href="/admin/users/show/{{ $user->id }}"><button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i> Detail</button></a>
+          </td>
+          <td>
             <a href="/admin/users/edit/{{ $user->id }}"><button type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i> Edit</button></a>
-            <button type="button" class="btn btn-danger" onclick='deleteAlert("/admin/users/delete/{{ $user->id }}")'><i class="bi bi-trash3-fill"></i> Delete</button>
           </td>
         </tr>  
       @endforeach

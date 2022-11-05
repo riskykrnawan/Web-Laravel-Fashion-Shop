@@ -24,6 +24,17 @@ class UserController extends Controller
         ]);
     }
 
+    public function show(string $id)
+    {
+        $users = DB::table('users')->get();
+        return view('admin.users.show',
+            [
+                'id' => $id,
+                'users' => $users
+            ]
+        );
+    }
+
     // edit products
     public function edit(string $id) {
         $user = DB::table('users')->where('id', $id)->first();

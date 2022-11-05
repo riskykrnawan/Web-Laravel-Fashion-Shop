@@ -62,7 +62,10 @@ Route::middleware(['auth'])->prefix('/admin')->group(function (){
         Route::post('/store', 'store');
         Route::get('/delete/{id}', 'delete');
     });
-    Route::get('/orders', [OrderController::class, 'index']);
+    Route::controller(OrderController::class)->prefix('/orders')->group(function() {
+        Route::get('/', 'index');
+        Route::post('/changeStatus/{id}', 'changeStatus');
+    });
     Route::get('/dashboard', function () {
         return view('admin.dashboard.index');
     });

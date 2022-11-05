@@ -43,6 +43,14 @@
           }
         });
       };
+
+      const failedAlert = () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Can\'t delete items that have been purchased before',
+        });
+      }
     </script>
     <script>
       /* globals Chart:false, feather:false */

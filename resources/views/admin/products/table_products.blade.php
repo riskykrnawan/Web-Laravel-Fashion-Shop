@@ -34,7 +34,11 @@
           <td>
             <a href="/admin/products/show/{{ $item->id }}"><button type="button" class="btn btn-success"><i class="bi bi-eye-fill"></i> Detail</button></a>
             <a href="/admin/products/edit/{{ $item->id }}"><button type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i> Edit</button></a>
-            <button type="button" class="btn btn-danger" onclick='deleteAlert("/admin/products/delete/{{ $item->id }}")'><i class="bi bi-trash3-fill"></i> Delete</button>
+            @if ($item->sold == 0)
+              <button type="button" class="btn btn-danger" onclick='deleteAlert("/admin/products/delete/{{ $item->id }}")'><i class="bi bi-trash3-fill"></i> Delete</button>
+            @else
+              <button type="button" class="btn btn-danger text-opacity-50" onclick='failedAlert()'><i class="bi bi-trash3-fill"></i> Delete</button>
+            @endif
           </td>
         </tr>  
       @endforeach
