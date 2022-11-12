@@ -52,12 +52,12 @@
           </li>
           @else
           <li class="nav-item text-center my-auto">
-            <a class="nav-link" aria-current="page" href="/">
+            <a class="nav-link" aria-current="page" href="/user/wishlist">
             <i class="bi bi-heart fs-4"></i>
             </a>
           </li>
           <li class="nav-item text-center">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/user/cart">
               <i class="bi bi-cart3 fs-4"></i>
             </a>
           </li>
@@ -74,8 +74,8 @@
             
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item">Hi, {{ Auth::user()->name }} </a></li>
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-person-circle me-2"></i> Profil</a></li>
-                <li><a class="dropdown-item" href="#"> <i class="bi bi-gear me-2"></i> Setting</a></li>
+                <li><a class="dropdown-item" href="/user/profile"> <i class="bi bi-person-circle me-2"></i> Profil</a></li>
+                <li><a class="dropdown-item" href="/user/setting"> <i class="bi bi-gear me-2"></i> Setting</a></li>
                 <li><a class="dropdown-item" href="/auth/logout"> <i class="bi bi-box-arrow-left me-2"></i> Logout</a></li>
               </ul>
             </div>
