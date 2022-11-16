@@ -40,16 +40,7 @@ Route::get('/products', function() {
     ]);
 });
 
-// Route::get('/user/wishlist', function() {
-//     return view('products', [
-//         // 'items' => DB::table('items')->get(),
-//         'route' => Request::route()->getName(),
-//         'title' => 'NIKKY',
-//         'items' => DB::table('items')->paginate(12),
-//         'banners' => Banner::all(),
-//     ]);
-// });
-
+Route::get('/products/show/{id}', [ItemController::class, 'detail']);
 
 Route::controller(AuthController::class)->prefix('/auth')->group(function (){
     Route::post('/register', 'register');

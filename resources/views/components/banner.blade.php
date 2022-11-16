@@ -2,7 +2,7 @@
   <div class="swiper-wrapper" role="button">
     @foreach ($banners as $banner)
       <div class="swiper-slide m-auto">
-        <img src="{{ asset($banner['imageUrl']) }}" height="2000" class="img-fluid img-ads placeholder" alt="...">
+        <img src="{{ asset($banner['imageUrl']) }}" height="2000" class="img-fluid img-ads placeholder" alt="..." loading="preload">
       </div>
     @endforeach
   </div>

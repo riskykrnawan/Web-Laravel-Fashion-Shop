@@ -13,7 +13,7 @@
     />
     @vite("resources/css/app.css")
   </head>
-  <body>
+  <body class="bg-light">
     @include('components.navbar')
     @yield('content_home')
     @include('components.footer')
@@ -62,6 +62,11 @@
           prevEl: ".swiper-button-prev",
         },
       });
+    </script>
+    <script>
+      redirectTo = (url) => {
+        document.location.href = url;
+      }
     </script>
   </body>
 </html>

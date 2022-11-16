@@ -31,6 +31,16 @@ class ItemController extends Controller
             ]
         );
     }
+    public function detail(string $id)
+    {
+        $item = DB::table('items')->where('id', $id)->first();
+        return view('detail',
+            [
+                'id' => $id,
+                'item' => $item,
+            ]
+        );
+    }
 
     public function create() {
         return view(
