@@ -16,7 +16,7 @@ class ItemController extends Controller
         $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
         return view('admin.products.index', [
             'items' => $items,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -27,14 +27,14 @@ class ItemController extends Controller
             [
                 'id' => $id,
                 'items' => $items,
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
     public function detail(string $id)
     {
         $item = DB::table('items')->where('id', $id)->first();
-        return view('detail',
+        return view('details',
             [
                 'id' => $id,
                 'item' => $item,
@@ -46,14 +46,14 @@ class ItemController extends Controller
         return view(
             'admin.products.create',
             [
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
     
     public function store(Request $request) {
         $image = $request->photo;
-        $image->storePubliclyAs('images', $image->getClientOriginalName(), 'public');
+        $image->storePubliclyAs('images/products', $image->getClientOriginalName(), 'public');
         DB::table('items')->insert([
             'id' => $request->id,
             'name' => $request->name,
@@ -62,7 +62,9 @@ class ItemController extends Controller
             'stock' => $request->stock,
             'price' => $request->price,
             'sold' => '0',
-            'photo' => "/storage/images/{$image->getClientOriginalName()}",
+            'reviewer' => '0',
+            'photo' => "/storage/images/products/{$image->getClientOriginalName()}",
+            'category' => $request->category,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -88,7 +90,7 @@ class ItemController extends Controller
 
         return view('admin.products.update', [
             'item' => $item,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -98,8 +100,8 @@ class ItemController extends Controller
         $newImage = $request->newPhoto;
         $imgUrl = $oldImage;
         if ($newImage != NULL) {
-            $newImage->storePubliclyAs('images', $newImage->getClientOriginalName(), 'public');
-            $imgUrl = "/storage/images/{$newImage->getClientOriginalName()}";
+            $newImage->storePubliclyAs('images/products', $newImage->getClientOriginalName(), 'public');
+            $imgUrl = "/storage/images/products{$newImage->getClientOriginalName()}";
         } else {
             $newImage == $oldImage;
         }

@@ -19,29 +19,28 @@
       </li>
       <hr class="me-3 ms-3 mt-2 text-light"> -->
       <li class="nav-item">
-        <a class="nav-link text-light" href="/user/profile">
+        <a class="nav-link text-light" href="/profile">
           <span data-feather="user" class="align-text-bottom text-light"></span>
           Profile 
           {{-- <span class="badge text-bg-danger float-end">1</span> --}}
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/user/wishlist">
+        <a class="nav-link text-light" href="/wishlist">
           <span class="bi bi-bag-heart" class="align-text-bottom text-light"></span>
           &ensp;Wishlist 
-          <!-- <span class="badge text-bg-danger float-end">{{ $pendingOrders }}</span> -->
           <span class="badge text-bg-danger float-end">10</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/user/cart">
+        <a class="nav-link text-light" href="/cart">
           <span data-feather="shopping-cart" class="align-text-bottom text-light"></span>
           Cart 
           <span class="badge text-bg-danger float-end">2</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" href="/user/setting">
+        <a class="nav-link text-light" href="/setting">
           <span data-feather="settings" class="align-text-bottom text-light"></span>
           Setting 
           {{-- <span class="badge text-bg-danger float-end">1</span> --}}

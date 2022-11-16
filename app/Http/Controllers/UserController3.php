@@ -20,9 +20,9 @@ class UserController3 extends Controller
         // mengirim data dari table users ke view index
         return view('user.profile.index', [
             'users' => $users,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
             'items' => $items,
-            // 'pendingOrders' => OrderController::pendingOrders(),
+            // 'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -33,7 +33,7 @@ class UserController3 extends Controller
             [
                 'id' => $id,
                 'users' => $users,
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -44,7 +44,7 @@ class UserController3 extends Controller
 
         return view('user.setting', [
             'user' => $user,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -58,9 +58,9 @@ class UserController3 extends Controller
                         'password' => Hash::make($request->new_password),
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
-                    return redirect('/user/update');
+                    return redirect('/update');
                 } else{
-                return redirect("/user/update/$request->id");
+                return redirect("/update/$request->id");
             }
         } else {
             DB::table('users')->where('id', $request->id)->update([
@@ -69,7 +69,7 @@ class UserController3 extends Controller
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
             // return redirect('/admin/users');
-            return redirect('/user/update');
+            return redirect('/update');
         }
     }
 

@@ -18,8 +18,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+            'photo' => '/storage/images/person-dummy.jpg',
+            'username' => fake()->username(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'address' => fake()->address(),
             'email_verified_at' => now(),
             'password' => 'user', // password
             'remember_token' => Str::random(10),

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -19,18 +20,17 @@ class UserController extends Controller
         // mengirim data dari table users ke view index
         return view('admin.users.index', [
             'users' => $users,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
     public function show(string $id)
     {
-        $users = DB::table('users')->get();
+        $user = DB::table('users')->where('id', $id)->get()[0];
         return view('admin.users.show',
             [
-                'id' => $id,
-                'users' => $users,
-                'pendingOrders' => OrderController::pendingOrders(),
+                'user' => $user,
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -41,7 +41,7 @@ class UserController extends Controller
 
         return view('admin.users.update', [
             'user' => $user,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -75,4 +75,13 @@ class UserController extends Controller
         $item->delete();
 		return redirect('/admin/users');
 	}
+
+    // user setting
+
+    public function userSetting()
+    {
+        return view('user.setting.index', [
+            'user' => Auth::user(),
+        ]);
+    }
 }

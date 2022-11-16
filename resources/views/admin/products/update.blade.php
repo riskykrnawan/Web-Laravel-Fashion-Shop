@@ -32,6 +32,10 @@
                 <input class="form-control" id="rating" type="number" placeholder="-" value="{{ $item->rating }}" aria-label="Disabled input rating" disabled>
               </div>
               <div class="mb-3">
+                <label for="review" class="form-label">Review</label>
+                <input class="form-control" id="review" type="number" placeholder="-" value="{{ $item->reviewer }}" aria-label="Disabled input review" disabled>
+              </div>
+              <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control" id="stock" value="{{ $item->stock }}" name="stock" placeholder="Stock">
               </div>
@@ -39,6 +43,15 @@
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" id="price" name="price" value="{{ $item->price }}" placeholder="Price">
               </div>
+              <select id="category" class="form-select mb-5" name="category" aria-label="Default select example">
+                <option value="other" selected>Category</option>
+                <option value="women">Women</option>
+                <option value="men">Men</option>
+                <option value="children">Children</option>
+                <option value="accessories">Accessories</option>
+                <option value="shoes">Shoes</option>
+                <option value="other">Other</option>
+              </select>
               <div class="mb-3">
                 <label for="sold" class="form-label">Sold</label>
                 <input class="form-control" id="sold" type="number" value="{{ $item->sold }}" placeholder="-" aria-label="Disabled input sold" disabled>

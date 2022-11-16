@@ -4,18 +4,35 @@
     <div class="container-fluid mb-5">
       <div class="row">
         @include('admin.components.sidebar')
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-5">
             <form action="/admin/users/update" method="post" enctype="multipart/form-data" onsubmit="createAlert()">
               {{ csrf_field() }}
               <input type="hidden" name="id" value="{{ $user->id }}">
               <div class="mb-3">
+                <img src="{{ $user->photo }}" alt="photo-user" width="100px">
+                <input type="hidden" class="form-control" id="oldPhoto" value="{{ $user->photo }}" name="oldPhoto" placeholder="Old Photo">
+              </div>
+              
+              <div class="mb-3">
+                <label for="newPhoto" class="form-label">Photo</label>
+                <input type="file" class="form-control" id="newPhoto" name="newPhoto" placeholder="New Photo">
+              </div>
+
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" value="{{ $user->username }}" name="username" placeholder="Username" disabled aria-disabled="true">
+              </div>
+              <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" value="{{ $user->name }}" name="name" placeholder="Product name">
+                <input type="text" class="form-control" id="name" value="{{ $user->name }}" name="name" placeholder="Name">
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input class="form-control" id="email" name="email" placeholder="Email" rows="3" value="{{ $user->email }}"/>
+                <input class="form-control" type="email" id="email" name="email" placeholder="Email" rows="3" value="{{ $user->email }}"/>
+              </div>
+              <div class="mb-3">
+                <label for="Address" class="form-label">Address</label>
+                <textarea class="form-control" id="Address" name="address" placeholder="Address" rows="3"> {{ $user->address }} </textarea>
               </div>
               <div class="mb-3">
                 <label for="email_verified_at" class="form-label">Email Verified at</label>
