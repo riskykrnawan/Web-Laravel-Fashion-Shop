@@ -30,7 +30,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       // Product Quantity
-      $('.quantity button').on('click', function () {
+      $('.quantity button').on('click', function (e) {
+          e.preventDefault();
           var button = $(this);
           var oldValue = button.parent().parent().find('input').val();
           if (button.hasClass('btn-plus')) {
@@ -52,6 +53,15 @@
           title: 'Oops...',
           text: 'You must login to add an item to wishlist!',
         });
+      };
+
+      const cartAlert = () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Yeay, success add product to cart!',
+          showConfirmButton: false,
+          timer: 3500
+        })
       };
     </script>
     <script>

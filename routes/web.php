@@ -66,7 +66,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/profile', [UserController::class, 'userProfile']);
     Route::get('/setting', [UserController::class, 'userSetting']);
     Route::post('/update', [UserController::class, 'userUpdate']);
-    Route::post('/add', [CartController::class, 'addToCart']);
+    Route::post('/carts/add', [CartController::class, 'addToCart']);
 });
 Route::middleware(['auth'])->controller(ItemController3::class)->prefix('wishlist')->group(function() {
     Route::get('/', 'index');

@@ -74,6 +74,14 @@
       }
     </script>
     <script>
+      const cartAlert = () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Yeay, success add product to cart!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      };
       const createAlert = () => {
         Swal.fire({
           icon: 'success',
