@@ -23,55 +23,21 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
       // Product Quantity
-      $('.quantity button').on('click', function () {
+      $('.quantity button').on('click', function (e) {
+          // e.preventDefault();
           var button = $(this);
           var oldValue = button.parent().parent().find('input').val();
           if (button.hasClass('btn-plus')) {
               var newVal = parseFloat(oldValue) + 1;
-          } else {
-              if (oldValue > 0) {
-                  var newVal = parseFloat(oldValue) - 1;
-              } else {
-                  newVal = 0;
-              }
+          } else if (button.hasClass('btn-minus')) {
+              var newVal = parseFloat(oldValue) - 1;
           }
+        }
           button.parent().parent().find('input').val(newVal);
-      });
-
-      /* Recalculate cart */
-      function recalculateCart(onlyTotal) {
-          var subtotal = 0;
-
-          /* Sum up row totals */
-          $('.basket-product').each(function () {
-              subtotal += parseFloat($(this).children('.subtotal').text());
-          });
-
-          /* Calculate totals */
-          var total = subtotal;
-
-          /*If switch for update only total, update only total display*/
-          if (onlyTotal) {
-              /* Update total display */
-              $('.total-value').fadeOut(fadeTime, function () {
-                  $('#basket-total').html(total);
-                  $('.total-value').fadeIn(fadeTime);
-              });
-          } else {
-              /* Update summary display. */
-
-              $('.final-value').fadeOut(fadeTime, function () {
-                  $('#basket-subtotal').html(subtotal);
-                  $('#basket-total').html(total);
-                  if (total == 0) {
-                      $('.checkout-cta').fadeOut(fadeTime);
-                  } else {
-                      $('.checkout-cta').fadeIn(fadeTime);
-                  }
-                  $('.final-value').fadeIn(fadeTime);
-              });
-          }
-      }
+      );
+      
+      
+      
     </script>
     <script>
       const cartAlert = () => {

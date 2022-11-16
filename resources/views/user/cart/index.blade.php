@@ -33,28 +33,36 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
+                           @foreach ($carts as $cart)
                             <tr>
-                                <td class="align-middle"><img src="https://images.tokopedia.net/img/cache/900/VqbcmM/2021/11/27/377509d6-33c2-43cd-bbdf-64ab48bd8cbf.png" alt="" style="width: 50px;"> Product Name</td>
-                                <td class="align-middle">$150</td>
+                                <td class="align-middle"><img src="{{ $cart->item->photo }}" alt="" style="width: 50px;">
+                                    <a href="/products/show/{{ $cart->item_id }}" class="text-decoration-none text-secondary">{{ mb_strimwidth($cart->item->name, 0, 30, "...") }}</a>
+                                </td>
+                                <td class="align-middle">Rp{{ number_format($cart->item->price,2, ',', '.') }}</td>
                                 <td class="align-middle m-auto">
                                     <div class="d-flex align-items-center justify-content-center">
-                                      <div class="input-group quantity" style="width: 130px;">
-                                          <div class="input-group-btn">
-                                              <button class="btn btn-warning rounded-0 btn-minus">
-                                                  <i class="fa fa-minus"></i>
-                                              </button>
-                                          </div>
-                                          <input type="number" name="quantity" class="form-control bg-light border-0 text-center" value="1">
-                                          <div class="input-group-btn">
-                                              <button class="btn btn-warning rounded-0 btn-plus">
-                                                  <i class="fa fa-plus"></i>
-                                              </button>
-                                          </div>
-                                      </div>
+                                    <form action="/carts/update" method="post">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="item_id" value="{{ $cart->item_id }}">
+                                        <div class="input-group quantity" style="width: 130px;">
+                                            <div class="input-group-btn">
+                                                <button type="submit" value='-1' name="minus" class="btn btn-warning rounded-0 btn-minus">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="number" name="quantity" class="form-control bg-light border-0 text-center" value="{{ $cart->quantity }}">
+                                            <div class="input-group-btn">
+                                                <button type="submit" value='1' class="btn btn-warning rounded-0 btn-plus" name="plus">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </td>
-                                <td class="align-middle">$150</td>
+                                <td class="align-middle">Rp{{ number_format($cart->item->price * $cart->quantity,2, ',', '.') }}</td>
                                 <td class="align-middle"><button class="btn btn-sm btn-danger rounded-0"><i class="fa fa-times"></i></button></td>
                             </tr>
+                           @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -72,19 +80,22 @@
                         <div class="border-bottom pb-2">
                             <div class="d-flex justify-content-between mb-3">
                                 <h6>Subtotal</h6>
-                                <h6>$150</h6>
+                                <h6>Rp{{ number_format($subtotal,2, ',', '.') }}</h6>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping</h6>
-                                <h6 class="font-weight-medium">$10</h6>
+                                <h6>Rp{{ number_format($subtotal * 0.05,2, ',', '.') }}</h6>
                             </div>
                         </div>
                         <div class="pt-2">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5>Total</h5>
-                                <h5>$160</h5>
+                                <h5>Rp{{ number_format($subtotal + $subtotal * 0.05,2, ',', '.') }}</h5>
                             </div>
-                            <button class="btn btn-block btn-warning rounded-0 font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                            <form action="/carts/checkout" method="post">
+                            {{ csrf_field() }}
+                                <button class="btn btn-block btn-warning rounded-0 font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                            </form>
                         </div>
                     </div>
                 </div>
