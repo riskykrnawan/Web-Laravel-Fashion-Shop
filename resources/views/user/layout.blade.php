@@ -22,6 +22,17 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // code...
+        var elems = document.querySelectorAll(".placeholder");
+  
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("placeholder");
+            el.classList.remove("placeholder-glow");
+        });
+      });
+    </script>
+    <script>
       // Product Quantity
       $('.quantity button').on('click', function (e) {
           // e.preventDefault();

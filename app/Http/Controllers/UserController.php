@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -112,11 +113,13 @@ class UserController extends Controller
     }
 
     public function userProfile() {
-    
-        // mengambil data dari table items
-        $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
+        // mengambil data dari table orders
+        $orders = Order::with(['Item', 'User'])
+        ->where('user_id', Auth::user()->id)->paginate(12);
+        $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
         return view('user.profile.index', [
-            'items' => $items,
+            'orders' => $orders,
+            'pendingOrders' => $pendingOrders
         ]);
     }
 }

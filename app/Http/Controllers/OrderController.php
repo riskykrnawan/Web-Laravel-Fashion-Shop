@@ -34,11 +34,9 @@ class OrderController extends Controller
         $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
         return view('user.orders.index', [
             'orders' => $orders,
-            'countPendingOrders' => OrderController::pendingOrders(),
             'pendingOrders' => $pendingOrders
         ]);
     }
-
     
 
     public function changeStatus(string $id, string $status) {
