@@ -97,6 +97,16 @@ Route::controller(ItemController3::class)->prefix('/user/wishlist')->group(funct
     // Route::get('/delete/{id}', 'delete');
 });
 
+Route::controller(WishlistController::class)->prefix('/user/wishlist')->group(function() {
+    Route::get('/', 'index');
+    Route::get('/show/{id}', 'show');
+    Route::get('/create', 'create');
+    Route::get('/edit/{id}', 'edit');
+    Route::post('/update', 'update');
+    Route::post('/store', 'store');
+    Route::get('/delete/{id}', 'delete');
+});
+
 
 Route::middleware(['auth'])->prefix('/admin')->group(function (){
     Route::controller(ItemController::class)->prefix('/products')->group(function() {
