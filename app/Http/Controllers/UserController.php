@@ -110,4 +110,13 @@ class UserController extends Controller
             return redirect('/profile');
         }
     }
+
+    public function userProfile() {
+    
+        // mengambil data dari table items
+        $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
+        return view('user.profile.index', [
+            'items' => $items,
+        ]);
+    }
 }

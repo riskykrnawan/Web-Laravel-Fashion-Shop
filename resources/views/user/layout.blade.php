@@ -20,7 +20,59 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script> 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      // Product Quantity
+      $('.quantity button').on('click', function () {
+          var button = $(this);
+          var oldValue = button.parent().parent().find('input').val();
+          if (button.hasClass('btn-plus')) {
+              var newVal = parseFloat(oldValue) + 1;
+          } else {
+              if (oldValue > 0) {
+                  var newVal = parseFloat(oldValue) - 1;
+              } else {
+                  newVal = 0;
+              }
+          }
+          button.parent().parent().find('input').val(newVal);
+      });
+
+      /* Recalculate cart */
+      function recalculateCart(onlyTotal) {
+          var subtotal = 0;
+
+          /* Sum up row totals */
+          $('.basket-product').each(function () {
+              subtotal += parseFloat($(this).children('.subtotal').text());
+          });
+
+          /* Calculate totals */
+          var total = subtotal;
+
+          /*If switch for update only total, update only total display*/
+          if (onlyTotal) {
+              /* Update total display */
+              $('.total-value').fadeOut(fadeTime, function () {
+                  $('#basket-total').html(total);
+                  $('.total-value').fadeIn(fadeTime);
+              });
+          } else {
+              /* Update summary display. */
+
+              $('.final-value').fadeOut(fadeTime, function () {
+                  $('#basket-subtotal').html(subtotal);
+                  $('#basket-total').html(total);
+                  if (total == 0) {
+                      $('.checkout-cta').fadeOut(fadeTime);
+                  } else {
+                      $('.checkout-cta').fadeIn(fadeTime);
+                  }
+                  $('.final-value').fadeIn(fadeTime);
+              });
+          }
+      }
+    </script>
     <script>
       const createAlert = () => {
         Swal.fire({

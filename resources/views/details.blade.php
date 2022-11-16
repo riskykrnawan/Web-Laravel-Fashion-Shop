@@ -100,8 +100,11 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
+                        <form action="/carts/add" method="POST">
+                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                            <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                        </form>
                     </div>
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>

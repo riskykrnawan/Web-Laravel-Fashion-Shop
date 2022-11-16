@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemController2;
 use App\Http\Controllers\ItemController3;
@@ -62,30 +63,11 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function (){
 
 // Bagian User
 Route::middleware(['auth'])->group(function() {
+    Route::get('/profile', [UserController::class, 'userProfile']);
     Route::get('/setting', [UserController::class, 'userSetting']);
     Route::post('/update', [UserController::class, 'userUpdate']);
+    Route::post('/add', [CartController::class, 'addToCart']);
 });
-
-Route::middleware(['auth'])->controller(UserController3::class)->prefix('profile')->group(function() {
-    Route::get('/', 'index');
-    Route::get('/show/{id}', 'show');
-    // Route::get('/create', 'create');
-    // Route::get('/edit/{id}', 'edit');
-    // Route::post('/update', 'update');
-    // Route::post('/store', 'store');
-    // Route::get('/delete/{id}', 'delete');
-});
-
-Route::middleware(['auth'])->controller(ItemController2::class)->prefix('cart')->group(function() {
-    Route::get('/', 'index');
-    Route::get('/show/{id}', 'show');
-    // Route::get('/create', 'create');
-    // Route::get('/edit/{id}', 'edit');
-    // Route::post('/update', 'update');
-    // Route::post('/store', 'store');
-    // Route::get('/delete/{id}', 'delete');
-});
-
 Route::middleware(['auth'])->controller(ItemController3::class)->prefix('wishlist')->group(function() {
     Route::get('/', 'index');
     Route::get('/show/{id}', 'show');

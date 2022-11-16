@@ -13,16 +13,10 @@ class UserController3 extends Controller
 {
     public function index()
     {
-        // mengambil data dari table users
-        $users = DB::table('users')->orderByDesc('updated_at')->paginate(12);
+        // mengambil data dari table items
         $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
-
-        // mengirim data dari table users ke view index
         return view('user.profile.index', [
-            'users' => $users,
-            'countPendingOrders' => OrderController::pendingOrders(),
             'items' => $items,
-            // 'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 

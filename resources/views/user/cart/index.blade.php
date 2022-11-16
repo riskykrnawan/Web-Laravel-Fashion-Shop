@@ -44,7 +44,7 @@
                                                   <i class="fa fa-minus"></i>
                                               </button>
                                           </div>
-                                          <input type="text" class="form-control bg-light border-0 text-center" value="1">
+                                          <input type="number" name="quantity" class="form-control bg-light border-0 text-center" value="1">
                                           <div class="input-group-btn">
                                               <button class="btn btn-warning rounded-0 btn-plus">
                                                   <i class="fa fa-plus"></i>
