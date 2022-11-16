@@ -32,12 +32,6 @@
           @else
             <th class="py-3 text-danger">{{ $order->status }}</th>
           @endif
-          <td>
-            @if ($order->status == 'pending')
-              <a name="status" class="border-0 bg-transparent btn" onclick="alert('/admin/orders/changeStatus/{{ $order->id }}/success')"><i class="bi bi-check-lg fs-3 text-success"></i> </a>
-              <a name="status" class="border-0 bg-transparent btn" onclick="alert('/admin/orders/changeStatus/{{ $order->id }}/failed')"><i class="bi bi-x text-danger fs-3"></i> </a>
-            @endif
-          </td>
         </tr>
       @endforeach
 

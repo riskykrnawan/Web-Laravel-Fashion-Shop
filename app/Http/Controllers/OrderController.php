@@ -25,6 +25,19 @@ class OrderController extends Controller
             'pendingOrders' => $pendingOrders
         ]);
     }
+    public function userShow()
+    {
+        // mengambil data dari table orders
+        $orders = Order::with(['Item', 'User'])
+        ->where('user_id', Auth::user()->id)
+        ->orderByRaw('FIELD(status, "pending", "success", "failed")')->paginate(10);
+        $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
+        return view('user.orders.index', [
+            'orders' => $orders,
+            'countPendingOrders' => OrderController::pendingOrders(),
+            'pendingOrders' => $pendingOrders
+        ]);
+    }
 
     
 

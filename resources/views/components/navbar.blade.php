@@ -55,7 +55,7 @@
             </a>
           </li>
           <li class="nav-item me-2 text-center me-3">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/orders">
               <i class="bi bi-truck fs-5"></i><span>Orders</span>
             </a>
           </li>
