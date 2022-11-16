@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -24,6 +25,8 @@ class OrderController extends Controller
             'pendingOrders' => $pendingOrders
         ]);
     }
+
+    
 
     public function changeStatus(string $id, string $status) {
         DB::table('orders')->where('id', $id)->update([
