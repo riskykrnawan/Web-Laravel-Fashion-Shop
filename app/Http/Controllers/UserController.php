@@ -52,6 +52,7 @@ class UserController extends Controller
                 DB::table('users')->where('id', $request->id)->update([
                         'name' => $request->name,
                         'email' => $request->email,
+                        'address' => $request->address,
                         'password' => Hash::make($request->new_password),
                         'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     ]);
@@ -83,5 +84,30 @@ class UserController extends Controller
         return view('user.setting.index', [
             'user' => Auth::user(),
         ]);
+    }
+
+    public function userUpdate(Request $request) {
+        if ($request->new_password || $request->confirm_new_password ) {
+            if($request->new_password == $request->confirm_new_password){
+                DB::table('users')->where('id', $request->id)->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'address' => $request->address,
+                        'password' => Hash::make($request->new_password),
+                        'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    ]);
+                    return redirect('/profile');
+                } else{
+                return redirect("/edit/$request->id");
+            }
+        } else {
+            DB::table('users')->where('id', $request->id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'address' => $request->address,
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+            return redirect('/profile');
+        }
     }
 }

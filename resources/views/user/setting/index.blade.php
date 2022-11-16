@@ -3,7 +3,7 @@
 <body>
   @include('components.navbar');
   <main class="container">
-    <form action="/admin/users/update" method="post" enctype="multipart/form-data" onsubmit="createAlert()">
+    <form action="/update" method="post" enctype="multipart/form-data" onsubmit="createAlert()">
       {{ csrf_field() }}
       <input type="hidden" name="id" value="{{ $user->id }}">
       <div class="mb-3">
@@ -38,7 +38,7 @@
       </div>
       <input type="hidden" name="password" value="{{ $user->password }}">
       <div class="mb-3">
-        <label for="new_password" class="form-label">New Password</label>
+        <label for="new_password" class="form-label">New Password <small>(ignore if not change password)</small></label>
         <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password">
       </div>
       <div class="mb-3">

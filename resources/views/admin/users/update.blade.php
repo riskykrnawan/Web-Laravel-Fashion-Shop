@@ -40,7 +40,7 @@
               </div>
               <input type="hidden" name="password" value="{{ $user->password }}">
               <div class="mb-3">
-                <label for="new_password" class="form-label">New Password</label>
+                <label for="new_password" class="form-label">New Password <small>(ignore if not change password)</small></label>
                 <input type="password" class="form-control" id="new_password" name="new_password" placeholder="New Password">
               </div>
               <div class="mb-3">

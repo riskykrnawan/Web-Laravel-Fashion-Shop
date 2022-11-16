@@ -63,6 +63,7 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function (){
 // Bagian User
 Route::middleware(['auth'])->group(function() {
     Route::get('/setting', [UserController::class, 'userSetting']);
+    Route::post('/update', [UserController::class, 'userUpdate']);
 });
 
 Route::middleware(['auth'])->controller(UserController3::class)->prefix('profile')->group(function() {
