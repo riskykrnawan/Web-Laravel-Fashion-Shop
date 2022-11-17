@@ -1,5 +1,4 @@
 @extends('admin.layout')
-
 @section('content_admin')
   <body>
     

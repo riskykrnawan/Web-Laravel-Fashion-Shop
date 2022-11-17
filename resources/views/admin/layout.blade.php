@@ -24,13 +24,7 @@
           $('#dashboard_icon').removeClass('text-light');
           $('#dashboard_icon').addClass('text-warning');
           break;
-        case '/admin/products':
-          $('#products').removeClass('text-light');
-          $('#products').addClass('text-warning');
-          $('#products_icon').removeClass('text-light');
-          $('#products_icon').addClass('text-warning');
-          break;
-        case '/admin/users':
+          case '/admin/users':
           $('#users').removeClass('text-light');
           $('#users').addClass('text-warning');
           $('#users_icon').removeClass('text-light');
@@ -44,6 +38,12 @@
           break;
         default:
           break;
+        }
+        if (pathname.substring(0, 15) === '/admin/products') {
+            $('#products').removeClass('text-light');
+            $('#products').addClass('text-warning');
+            $('#products_icon').removeClass('text-light');
+            $('#products_icon').addClass('text-warning');
         }
     </script>
     <script>

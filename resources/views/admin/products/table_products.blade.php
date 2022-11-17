@@ -19,20 +19,25 @@
       </tr>
     </thead>
     <tbody class="">
-      <a href="/admin/products/create"> <button class="btn btn-warning rounded-0 px-3 float-end mb-3"><i class="bi bi-plus-lg"></i><span class="ms-2">Add Products</span></button></a>
-      @foreach ($items as $item)
+      <a href="/admin/products/create">
+        <button class="btn btn-warning rounded-0 px-3 float-end mb-3">
+          <i class="bi bi-plus-lg"></i>
+          <span class="ms-2">Add Products</span>
+        </button>
+      </a>
+      @foreach ($items['data'] as $item)
         <tr role="button">
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")><img class="rounded" src="{{ $item->photo }}" width="50px" alt=""></td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ mb_strimwidth($item->name, 0, 30, "...") }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ mb_strimwidth($item->description, 0, 35, "...") }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ ucfirst($item->category) }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->rating }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->reviewer }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->stock }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>Rp</span>{{ number_format($item->price,2, ',', '.') }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->sold }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->created_at }}</td>
-          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item->id }}")>{{ $item->updated_at }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")><img class="rounded" src="{{ $item['photo'] }}" width="50px" alt=""></td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ mb_strimwidth($item['name'], 0, 30, "...") }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ mb_strimwidth($item['description'], 0, 35, "...") }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ ucfirst($item['category']) }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['rating'] }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['reviewer'] }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['stock'] }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>Rp</span>{{ number_format($item['price'],2, ',', '.') }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['sold'] }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['created_at'] }}</td>
+          <td class="py-2" onclick=redirectTo("/admin/products/show/{{ $item['id'] }}")>{{ $item['updated_at'] }}</td>
           <td class="py-2 front">
             <div class="btn-group dropend pointer" role="button">
               <div class="bg-transparent" data-bs-toggle="dropdown">
@@ -40,11 +45,11 @@
               </div>
               <ul class="dropdown-menu">
                 <!-- Dropdown menu links -->
-                <li><a class="dropdown-item" href="/admin/products/show/{{ $item->id }}"><i class="bi bi-eye-fill me-2"></i> Detail</a></li>
-                <li><a class="dropdown-item" href="/admin/products/edit/{{ $item->id }}"><i class="bi bi-pen-fill me-2"></i> Edit</a></li>
-                @if ($item->sold == 0)
-                  <li><a class="dropdown-item" onclick='deleteAlert("/admin/products/delete/{{ $item->id }}")'><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
-                  @else
+                <li><a class="dropdown-item" href="/admin/products/show/{{ $item['id'] }}"><i class="bi bi-eye-fill me-2"></i> Detail</a></li>
+                <li><a class="dropdown-item" href="/admin/products/edit/{{ $item['id'] }}"><i class="bi bi-pen-fill me-2"></i> Edit</a></li>
+                @if ($item['sold'] == 0)
+                  <li><a class="dropdown-item" onclick='deleteAlert('/admin/products/delete/' . {{ $item['id'] }} )'><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
+                @else
                   <li><a class="dropdown-item" onclick='failedAlert()'><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
                 @endif
               </ul>
@@ -55,9 +60,27 @@
 
     </tbody>
   </table>
-    @if ($items->hasPages())
-      <div>
-        <span class="bg-warning"> {{ $items->links() }} </span>
-      </div>
-    @endif
+    <nav aria-label="...">
+      <ul class="pagination">
+        @foreach ($items['links'] as $key=>$link)
+          @if ($key == 0)
+            <li class="page-item" aria-current="page">
+              <a class="page-link" href="/admin/products/page/1">First</a>
+            </li>
+          @elseif ($key == sizeof($items['links']) - 1)
+            <li class="page-item" aria-current="page">
+              <a class="page-link" href="/admin/products/page/{{ sizeof($items['links']) - 2 }}" >Last</a>
+            </li>
+          @elseif ($link['active'])
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="/admin/products/page/{{ $link['label'] }}">{{ $link['label'] }}</a>
+            </li>
+          @else
+            <li class="page-item"><a class="page-link" href="/admin/products/page/{{ $link['label'] }}">{{ $link['label'] }}</a></li>
+          @endif
+        @endforeach
+      </ul>
+    </nav>
+
+    
 </div>
