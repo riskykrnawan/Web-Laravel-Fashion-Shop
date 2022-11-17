@@ -738,6 +738,69 @@ class ItemSeeder extends Seeder
                 'photo' => 'https://ecs7.tokopedia.net/img/cache/900/VqbcmM/2022/5/11/70091a86-846a-4892-b924-6843a6c391a3.jpg',
                 'category' => 'children'
             ],
+            [
+                'id' => '36',
+                'name' => "Porto - Sepatu Wanita Flat Shoes Slip On Korea Casual Kantor KSM, 36",
+                'description' => "Ukuran : 36-40
+
+                Bahan : Karet Kuat
+                
+                Size Chart Ladies Sandal & Sepatu
+                
+                36 : 21,5 - 22,5 cm
+                
+                37 : 22,6 - 23,5 cm
+                
+                38 : 23,6 - 24,5 cm
+                
+                39 : 24,6 - 25,5 cm
+                
+                40 : 25,6 - 26,5 cm                                 
+                ",
+                'rating' => 4.9,
+                'reviewer' => 387,
+                'stock' => 37,
+                'price' => 54900,
+                'sold' => 534,
+                'photo' => 'https://images.tokopedia.net/img/cache/900/VqbcmM/2021/6/7/87301c9b-937c-4e9e-8372-60a441ddd596.jpg',
+                'category' => 'shoes'
+            ],
+            [
+                'id' => '37',
+                'name' => "Jam Tangan Pria | Men's watch Hannah Martin Original Simple Design - JA1",
+                'description' => "I. Spesifikasi Produk
+                MERK : Hannah Martin
+                ID NO : HM-CH02
+                DIAL METER : 40mm
+                CASE THICKNESS : 6.9mm
+                BAND LENGTH : FREE SIZE
+                WEIGHT : ABOUT 38g
+                BAND WIDTH : 20mm
+                
+                II. PARAMETERS
+                JAPAN SEIKO TIME MODULE MOVEMENT
+                WITHOUT SECOD HAND
+                HIGH DENSITY CASE , CLASS A POLISHED
+                GENDER : MEN
+                HIGH QUALITY LEATHER
+                WATER RESISTANCE DEPTH: 3 BAR
+                
+                PRODUK TERMASUK :
+                - Box Hannah Martin
+                - Brand Label Hannah Martin
+                - BATERAI CADANGAN 1PCS
+                - Buku petunjuk manual
+                
+                PENTING : Dipacking Dengan Buble Wrap + Box Kardus (GRATIS TANPA TAMBAHAN BIAYA)
+                ",
+                'rating' => 4.9,
+                'reviewer' => 1329,
+                'stock' => 37,
+                'price' => 89000,
+                'sold' => 2134,
+                'photo' => 'https://images.tokopedia.net/img/cache/900/VqbcmM/2022/9/13/82322e5e-26a8-4431-a28b-2a0f96161455.jpg',
+                'category' => 'accessories'
+            ],
         ];
 
         foreach ($items as $item) {
