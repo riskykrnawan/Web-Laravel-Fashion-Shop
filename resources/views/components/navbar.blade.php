@@ -9,20 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 300px;">
         <li class="nav-item">
-          <a class="nav-link active text-warning" aria-current="page" href="/">Home</a>
+          <a class="nav-link" id="home" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products/women">Women</a>
+          <a class="nav-link" id="women" href="/products/women">Women</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products/men">Men</a>
+          <a class="nav-link" id="men" href="/products/men">Men</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products/children">Children</a>
+          <a class="nav-link" id="children" href="/products/children">Children</a>
         </li>
         <li class="nav-item my-auto me-3">
           <div class="dropdown">
-            <a class="nav-link bg-transparent text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a id="other" class="nav-link bg-transparent text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Other
             </a>
           
@@ -45,17 +45,17 @@
           </li>
           @else
           <li class="nav-item me-2 text-center my-auto">
-            <a class="nav-link" aria-current="page" href="/wishlist">
+            <a id="wishlist" class="nav-link" aria-current="page" href="/wishlist">
             <i class="bi bi-heart fs-5"></i><span>Wishlist</span>
             </a>
           </li>
           <li class="nav-item me-2 text-center">
-            <a class="nav-link" href="/cart">
+            <a id="cart" class="nav-link" href="/cart">
               <i class="bi bi-cart3 fs-5"></i><span>Cart</span>
             </a>
           </li>
           <li class="nav-item me-2 text-center me-3">
-            <a class="nav-link" href="/orders">
+            <a id="orders" class="nav-link" href="/orders">
               <i class="bi bi-truck fs-5"></i><span>Orders</span>
             </a>
           </li>
@@ -78,7 +78,5 @@
     </div>
   </div>
 </nav>
-
-
 @include('components.login_modal')
 @include('components.register_modal')

@@ -1,6 +1,6 @@
-@extends('admin.products.layout')
+@extends('admin.layout')
 
-@section('content.products')
+@section('content_admin')
   <body>
     
     <div class="container-fluid my-3">

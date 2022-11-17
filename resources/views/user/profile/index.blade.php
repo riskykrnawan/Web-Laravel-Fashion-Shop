@@ -1,6 +1,5 @@
 @extends('user.layout')
 @section('content.user')
-@include('components.navbar')
 <main class="container mt-5">
   <div class="row">
     <div class="col-md-12 mt-2 m-auto text-center">

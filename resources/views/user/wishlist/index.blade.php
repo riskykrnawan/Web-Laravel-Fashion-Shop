@@ -1,6 +1,5 @@
 @extends('user.layout')
 @section('content.user')
-@include('components.navbar')
 <div class="container">
     <main class="">
         <!-- Breadcrumb Start -->

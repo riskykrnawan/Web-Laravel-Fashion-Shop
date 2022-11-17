@@ -1,7 +1,5 @@
 @extends('user.layout')
 @section('content.user')
-<body>
-  @include('components.navbar');
   <main class="container">
     <form action="/update" method="post" enctype="multipart/form-data" onsubmit="createAlert()">
       {{ csrf_field() }}

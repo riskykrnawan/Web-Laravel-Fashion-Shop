@@ -29,6 +29,32 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
+      const pathname = window.location.pathname;
+      switch(pathname) {
+      case '/':
+        $('#home').addClass('text-warning');
+        break;
+      case '/products/women':
+        $('#women').addClass('text-warning');
+        break;
+      case '/products/men':
+        $('#men').addClass('text-warning');
+        break;
+      case '/products/children':
+        $('#children').addClass('text-warning');
+        break;
+      case '/products/accessories':
+        $('#other').addClass('text-warning');
+        break;
+      case '/products/shoes':
+        $('#other').addClass('text-warning');
+        break;
+      default:
+        break;
+      }
+    </script>
+    
+    <script>
       // Product Quantity
       $('.quantity button').on('click', function (e) {
           e.preventDefault();
