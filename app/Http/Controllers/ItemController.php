@@ -89,12 +89,12 @@ class ItemController extends Controller
     public function delete(string $id)
 	{
         $item = DB::table('items')->where('id', $id);
-        $filename =  substr($item->first()->photo, 1);
+        // $filename =  substr($item->first()->photo, 1);
         // echo base_path($filename);
         // exit;
         // delete photo
         // Storage::delete(base_path('app/public' . $filename));
-        // $item->delete();
+        $item->delete();
 		return redirect('/admin/products/page/1');
 	}
 

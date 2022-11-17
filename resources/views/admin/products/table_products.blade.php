@@ -48,7 +48,7 @@
                 <li><a class="dropdown-item" href="/admin/products/show/{{ $item['id'] }}"><i class="bi bi-eye-fill me-2"></i> Detail</a></li>
                 <li><a class="dropdown-item" href="/admin/products/edit/{{ $item['id'] }}"><i class="bi bi-pen-fill me-2"></i> Edit</a></li>
                 @if ($item['sold'] == 0)
-                  <li><a class="dropdown-item" onclick='deleteAlert('/admin/products/delete/' . {{ $item['id'] }} )'><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
+                  <li><a class="dropdown-item" onclick=deleteAlert("/admin/products/delete/{{ $item['id'] }}")><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
                 @else
                   <li><a class="dropdown-item" onclick='failedAlert()'><i class="bi bi-trash3-fill me-2"></i> Delete</a></li>
                 @endif
