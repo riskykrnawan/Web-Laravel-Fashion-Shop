@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserController extends Controller
+class UserControllerAPI extends Controller
 {
     public function index()
     {
@@ -19,7 +19,7 @@ class UserController extends Controller
         // mengirim data dari table users ke view index
         return view('admin.users.index', [
             'users' => $users,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -30,7 +30,7 @@ class UserController extends Controller
             [
                 'id' => $id,
                 'users' => $users,
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -41,7 +41,7 @@ class UserController extends Controller
 
         return view('admin.users.update', [
             'user' => $user,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 

@@ -1,6 +1,6 @@
-@extends('admin.products.layout')
+@extends('admin.layout')
 
-@section('content.products')
+@section('content_admin')
   <body>
     
     <div class="container-fluid my-3">
@@ -34,8 +34,16 @@
                   <td>{{ $item->description }}</td>
                 </tr>
                 <tr>
+                  <th scope="row">Category</th>
+                  <td>{{ Str::ucfirst($item->category) }}</td>
+                </tr>
+                <tr>
                   <th scope="row">Rating</th>
                   <td>{{ $item->rating }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Review</th>
+                  <td>{{ $item->reviewer }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Stock</th>

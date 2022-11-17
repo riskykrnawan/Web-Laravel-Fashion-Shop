@@ -10,6 +10,9 @@ class Item extends Model
     public function Order() {
         return $this->hasMany(Order::class);
     }
+    public function Cart() {
+        return $this->hasMany(Cart::class);
+    }
     use HasFactory;
 
     protected $table = 'items';

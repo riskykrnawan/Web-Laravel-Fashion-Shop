@@ -14,6 +14,10 @@
             <input type="text" class="form-control" id="inputName" name="name" aria-describedby="name" required>
           </div>
           <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="inputUsername" aria-describedby="usernameHelp" name="username" required>
+          </div>
+          <div class="mb-3">
             <label for="inputEmail1" class="form-label">Email address</label>
             <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" name="email" required>
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>

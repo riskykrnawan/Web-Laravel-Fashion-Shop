@@ -4,7 +4,12 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a class="text-secondary" href="/">Home</a></li>
+      @if ($param)
+      <li class="breadcrumb-item" aria-current="page"><a class="text-secondary" href="/products">Products</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ ucfirst($param) }}</li>
+      @else
       <li class="breadcrumb-item active" aria-current="page">Products</li>
+      @endif
     </ol>
   </nav>
   

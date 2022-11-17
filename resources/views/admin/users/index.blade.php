@@ -1,12 +1,11 @@
-@extends('admin.users.layout')
-@section('content.users')
+@extends('admin.layout')
+@section('content_admin')
   <body>
     <div class="container-fluid">
       <div class="row">
         @include('admin.components.sidebar')
 
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
+        <main class="my-5 col-md-9 ms-sm-auto col-lg-10 px-md-4">
           @include('admin.users.table_users')
         </main>
       </div>
