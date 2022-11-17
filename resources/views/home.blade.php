@@ -29,15 +29,23 @@
     @endif
     @include('components.banner')
   </div>  
-  <div class="container text-justify py-0">
-    <h2 class="text-uppercase fs-5 text-secondary">Our Products</h2>
+  <div>
+    @include('components.categories')
+  </div>
+  <div class="container text-justify pt-5">
+    <h2 class="text-uppercase fs-5 text-secondary">Featured Products</h2>
     <hr width="70px">
-    
-    <div class="row justify-content-sm-center mb-5">
+    <div class="row justify-content-sm-center">
       @include('components.card')
-      <div class="w-100 text-end mt-3 mb-3 mr-2">
+      <div class="w-100 text-end mt-3 mb-3 me-2">
         <a href="/products" class="text-secondary">Lihat selengkapnya...</a>
       </div>
     </div>
   </div>
+  <div class="container pt-5">
+    <h2 class="text-uppercase fs-5 text-secondary">Special Offer</h2>
+    <hr width="70px">
+    @include('components.offers')
+  </div>
+  <a href="#" class="btn btn-warning back-to-top rounded-0 "><i class="fa fa-angle-double-up"></i></a>
 @endsection

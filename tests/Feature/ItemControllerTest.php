@@ -17,7 +17,7 @@ class ItemControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $this->get('/admin/products')
+        $this->get('/admin/products/page/1')
             ->assertStatus(302);
     }
     public function testCreate()

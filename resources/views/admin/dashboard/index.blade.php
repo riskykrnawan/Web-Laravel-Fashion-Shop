@@ -1,6 +1,6 @@
-@extends('admin.dashboard.layout')
+@extends('admin.layout')
 
-@section('content_dashboard')
+@section('content_admin')
   <body>
     <div class="container-fluid">
       <div class="row">

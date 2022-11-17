@@ -19,14 +19,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware([])->prefix('/admin')->group(function (){
-    Route::controller(ProductController::class)->prefix('/products')->group(function() {
-        Route::get('/', 'getItems');
-        Route::get('/show/{id}', 'getItemById');
-        Route::post('/create', 'create');
-        // Route::get('/edit/{id}', 'edit');
-        // Route::post('/update', 'update');
-        // Route::post('/store', 'store');
-        // Route::get('/delete/{id}', 'delete');
-    });
+Route::middleware([])->controller(ProductController::class)->prefix('/admin/products')->group(function() {
+    Route::get('/', 'getItems');
+    Route::get('/show/{id}', 'getItemById');
+    // Route::post('/create', 'create');
+    // Route::get('/edit/{id}', 'edit');
+    // Route::post('/update', 'update');
+    // Route::post('/store', 'store');
+    // Route::get('/delete/{id}', 'delete');
 });

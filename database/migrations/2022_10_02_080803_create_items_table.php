@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('rating');
+            $table->integer('reviewer');
             $table->integer('stock');
             $table->integer('price');
             $table->integer('sold');
             $table->string('photo');
+            $table->string('category');
             $table->timestamps();
         });
     }

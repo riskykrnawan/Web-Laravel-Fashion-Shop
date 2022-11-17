@@ -6,14 +6,74 @@
     <title>NIKKY</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
     @vite("resources/css/app.css")
   </head>
   <body class="bg-light">
-    @yield('content.products')
+    @include('components.navbar')
+    @yield('content.user')
+    @include('components.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script> 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
+      const pathname = window.location.pathname;
+      switch(pathname) {
+        case '/wishlist':
+          $('#wishlist').addClass('text-warning');
+          break;
+        case '/cart':
+          $('#cart').addClass('text-warning');
+          break;
+        case '/orders':
+          $('#orders').addClass('text-warning');
+          break;
+        default:
+          break;
+        }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // code...
+        var elems = document.querySelectorAll(".placeholder");
+  
+        [].forEach.call(elems, function(el) {
+            el.classList.remove("placeholder");
+            el.classList.remove("placeholder-glow");
+        });
+      });
+    </script>
+    <script>
+      // Product Quantity
+      $('.quantity button').on('click', function () {
+          // e.preventDefault();
+          var button = $(this);
+          var oldValue = button.parent().parent().find('input').val();
+          if (button.hasClass('btn-plus')) {
+              var newVal = parseFloat(oldValue) + 1;
+          } else if (button.hasClass('btn-minus')) {
+              var newVal = parseFloat(oldValue) - 1;
+          }
+          button.parent().parent().find('input').val(newVal);
+        }
+      );
+    </script>
+    <script>
+      const cartAlert = () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Yeay, success checkout.!',
+          showConfirmButton: false,
+          timer: 3500
+        })
+      };
       const createAlert = () => {
         Swal.fire({
           icon: 'success',

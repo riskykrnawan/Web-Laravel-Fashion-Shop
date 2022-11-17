@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function getItems()
     {
         // mengambil data dari table items
-        $items = DB::table('items')->orderByDesc('updated_at')->get();
+        $items = DB::table('items')->paginate(10);
 
         $response = [
             'status' => 'success',

@@ -16,7 +16,7 @@ class ItemController2 extends Controller
         $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
         return view('user.cart.index', [
             'items' => $items,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -27,7 +27,7 @@ class ItemController2 extends Controller
             [
                 'id' => $id,
                 'items' => $items,
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -36,7 +36,7 @@ class ItemController2 extends Controller
         return view(
             'admin.products.create',
             [
-                'pendingOrders' => OrderController::pendingOrders(),
+                'countPendingOrders' => OrderController::pendingOrders(),
             ]
         );
     }
@@ -57,7 +57,7 @@ class ItemController2 extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 
     // delete products
@@ -69,7 +69,7 @@ class ItemController2 extends Controller
         // $itemFetch = $item->first();
         // File::delete($itemFetch->photo);
         $item->delete();
-		return redirect('/admin/products');
+		return redirect('/admin/products/page/1');
 	}
 
     // edit products
@@ -78,7 +78,7 @@ class ItemController2 extends Controller
 
         return view('admin.products.update', [
             'item' => $item,
-            'pendingOrders' => OrderController::pendingOrders(),
+            'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
 
@@ -103,6 +103,6 @@ class ItemController2 extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 }

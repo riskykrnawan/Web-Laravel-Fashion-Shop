@@ -4,10 +4,12 @@
     <thead>
       <tr>
         {{-- <th scope="col">#</th> --}}
+        <th scope="col">Photo</th>
+        <th scope="col">Username</th>
         <th scope="col">Name</th>
+        <th scope="col">Address</th>
         <th scope="col">Email</th>
         <th scope="col">Email verified at</th>
-        {{-- <th scope="col">Password</th> --}}
         <th scope="col">Remember Token</th>
         <th scope="col">Created at</th>
         <th scope="col">Updated at</th>
@@ -15,10 +17,14 @@
       </tr>
     </thead>
     <tbody class="">
-      <a href=""> <button class="btn btn-primary rounded-pill px-3 float-end mb-3"><i class="bi bi-plus-lg"></i><span class="ms-2">Add User</span></button></a>
+      <a href=""> <button class="btn btn-warning rounded-0 px-3 float-end mb-3"><i class="bi bi-plus-lg"></i><span class="ms-2">Add User</span></button></a>
       @foreach ($users as $user)
         <tr role="button">
+          
+          <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")><img src="{{ $user->photo }}" width="50px" class="rounded-circle img-thumbnail" alt="photo-user"></td>
+          <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->username }}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->name }}</td>
+          <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->address }}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->email }}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->email_verified_at}}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->remember_token}}</td>
