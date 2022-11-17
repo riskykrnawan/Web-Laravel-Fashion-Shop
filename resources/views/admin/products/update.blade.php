@@ -43,15 +43,18 @@
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" id="price" name="price" value="{{ $item->price }}" placeholder="Price">
               </div>
-              <select id="category" class="form-select mb-5" name="category" aria-label="Default select example">
-                <option value="other" selected>Category</option>
-                <option value="women">Women</option>
-                <option value="men">Men</option>
-                <option value="children">Children</option>
-                <option value="accessories">Accessories</option>
-                <option value="shoes">Shoes</option>
-                <option value="other">Other</option>
-              </select>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" class="form-select mb-5" name="category" aria-label="Default select example">
+                  <option value="{{ $item->category }}" selected>{{ Str::ucfirst($item->category) }}</option>
+                  <option value="women">Women</option>
+                  <option value="men">Men</option>
+                  <option value="children">Children</option>
+                  <option value="accessories">Accessories</option>
+                  <option value="shoes">Shoes</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
               <div class="mb-3">
                 <label for="sold" class="form-label">Sold</label>
                 <input class="form-control" id="sold" type="number" value="{{ $item->sold }}" placeholder="-" aria-label="Disabled input sold" disabled>

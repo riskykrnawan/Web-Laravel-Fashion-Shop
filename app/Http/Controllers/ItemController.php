@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -52,8 +52,13 @@ class ItemController extends Controller
     }
     
     public function store(Request $request) {
+        $date = Carbon::now()->format('Ymd_His');
         $image = $request->photo;
-        $image->storePubliclyAs('images/products', $image->getClientOriginalName(), 'public');
+        $extension = $image->getClientOriginalExtension();
+        $newName = "IMG_$date.$extension";
+        $image->storePubliclyAs('images/products', $newName, 'public');
+
+        // $image->storePubliclyAs('images/products', $image->getClientOriginalName(), 'public');
         DB::table('items')->insert([
             'id' => $request->id,
             'name' => $request->name,
@@ -63,7 +68,7 @@ class ItemController extends Controller
             'price' => $request->price,
             'sold' => '0',
             'reviewer' => '0',
-            'photo' => "/storage/images/products/{$image->getClientOriginalName()}",
+            'photo' => "/storage/images/products/{$newName}",
             'category' => $request->category,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -75,12 +80,13 @@ class ItemController extends Controller
     // delete products
     public function delete(string $id)
 	{
-		$item = DB::table('items')->where('id', $id);
-
+        $item = DB::table('items')->where('id', $id);
+        $filename =  substr($item->first()->photo, 1);
+        // echo base_path($filename);
+        // exit;
         // delete photo
-        // $itemFetch = $item->first();
-        // File::delete($itemFetch->photo);
-        $item->delete();
+        // Storage::delete(base_path('app/public' . $filename));
+        // $item->delete();
 		return redirect('/admin/products');
 	}
 
@@ -100,16 +106,19 @@ class ItemController extends Controller
         $newImage = $request->newPhoto;
         $imgUrl = $oldImage;
         if ($newImage != NULL) {
-            $newImage->storePubliclyAs('images/products', $newImage->getClientOriginalName(), 'public');
-            $imgUrl = "/storage/images/products{$newImage->getClientOriginalName()}";
-        } else {
-            $newImage == $oldImage;
+            
+            $date = Carbon::now()->format('Ymd_His');
+            
+            $extension = $newImage->getClientOriginalExtension();
+            $newName = "IMG_$date.$extension";
+            $newImage->storePubliclyAs('images/products', $newName, 'public');
+            $imgUrl = "/storage/images/products/{$newName}";
         }
-
         DB::table('items')->where('id', $request->id)->update([
             'name' => $request->name,
             'description' => $request->description,
             'stock' => $request->stock,
+            'category' => $request->category,
             'price' => $request->price,
             'photo' => $imgUrl,
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

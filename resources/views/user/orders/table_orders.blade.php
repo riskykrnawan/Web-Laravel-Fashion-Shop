@@ -4,7 +4,6 @@
     <thead class="">
       <tr>
         <th scope="col">Item</th>
-        <th scope="col">User</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total Price</th>
         <th scope="col">Date Transaction</th>
@@ -16,8 +15,7 @@
     <tbody class="">
       @foreach ($orders as $order)
         <tr>
-          <td class="py-3"><a class="link-dark" href="/admin/products/show/{{ $order->item->id }}">{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</a></td>
-          <td class="py-3"><a class="link-dark" href="/admin/users/show/{{ $order->user->id }}">{{ $order->user->username }}</a></td>
+          <td class="py-3"><a class="link-dark" href="/products/show/{{ $order->item->id }}">{{ mb_strimwidth($order->item->name, 0, 60, "...") }}</a></td>
           <td class="py-3">{{ $order->quantity }}</td>
           @php
             $totalPrice = $order->item->price * $order->quantity;

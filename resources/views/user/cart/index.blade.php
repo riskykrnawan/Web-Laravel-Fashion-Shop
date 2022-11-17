@@ -92,7 +92,7 @@
                                 <h5>Total</h5>
                                 <h5>Rp{{ number_format($subtotal + $subtotal * 0.05,2, ',', '.') }}</h5>
                             </div>
-                            <form action="/carts/checkout" method="post">
+                            <form action="/carts/checkout" method="post" onsubmit="cartAlert()">
                             {{ csrf_field() }}
                                 <button class="btn btn-block btn-warning rounded-0 font-weight-bold my-3 py-3">Proceed To Checkout</button>
                             </form>

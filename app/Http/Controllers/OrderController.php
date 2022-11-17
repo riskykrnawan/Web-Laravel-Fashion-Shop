@@ -30,7 +30,7 @@ class OrderController extends Controller
         // mengambil data dari table orders
         $orders = Order::with(['Item', 'User'])
         ->where('user_id', Auth::user()->id)
-        ->orderByRaw('FIELD(status, "pending", "success", "failed")')->paginate(10);
+        ->orderByRaw('FIELD(status, "pending", "success", "failed")')->orderBy('updated_at', 'desc')->paginate(10);
         $pendingOrders = DB::table('orders')->where('status', 'pending')->get();
         return view('user.orders.index', [
             'orders' => $orders,

@@ -48,10 +48,26 @@ class UserController extends Controller
 
     // update products
     public function update(Request $request) {
+        $oldImage = $request->photo;
+        $newImage = $request->newPhoto;
+        $imgUrl = $oldImage;
+        if ($newImage != NULL) {
+            
+            $date = Carbon::now()->format('Ymd_His');
+            
+            $extension = $newImage->getClientOriginalExtension();
+            $newName = "IMG_$date.$extension";
+            $newImage->storePubliclyAs('images/users', $newName, 'public');
+            $imgUrl = "/storage/images/users/{$newName}";
+        }
+        
+        // echo $imgUrl;
+        // exit;
         if ($request->new_password || $request->confirm_new_password ) {
             if($request->new_password == $request->confirm_new_password){
                 DB::table('users')->where('id', $request->id)->update([
                         'name' => $request->name,
+                        'photo' => $imgUrl,
                         'email' => $request->email,
                         'address' => $request->address,
                         'password' => Hash::make($request->new_password),
@@ -64,7 +80,9 @@ class UserController extends Controller
         } else {
             DB::table('users')->where('id', $request->id)->update([
                 'name' => $request->name,
+                'photo' => $imgUrl,
                 'email' => $request->email,
+                'address' => $request->address,
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
             return redirect('/admin/users');
@@ -88,10 +106,24 @@ class UserController extends Controller
     }
 
     public function userUpdate(Request $request) {
+        $oldImage = $request->photo;
+        $newImage = $request->newPhoto;
+        $imgUrl = $oldImage;
+        if ($newImage != NULL) {
+            
+            $date = Carbon::now()->format('Ymd_His');
+            
+            $extension = $newImage->getClientOriginalExtension();
+            $newName = "IMG_$date.$extension";
+            $newImage->storePubliclyAs('images/users', $newName, 'public');
+            $imgUrl = "/storage/images/users/{$newName}";
+        }
+
         if ($request->new_password || $request->confirm_new_password ) {
             if($request->new_password == $request->confirm_new_password){
                 DB::table('users')->where('id', $request->id)->update([
                         'name' => $request->name,
+                        'photo' => $imgUrl,
                         'email' => $request->email,
                         'address' => $request->address,
                         'password' => Hash::make($request->new_password),
@@ -104,6 +136,7 @@ class UserController extends Controller
         } else {
             DB::table('users')->where('id', $request->id)->update([
                 'name' => $request->name,
+                'photo' => $imgUrl,
                 'email' => $request->email,
                 'address' => $request->address,
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

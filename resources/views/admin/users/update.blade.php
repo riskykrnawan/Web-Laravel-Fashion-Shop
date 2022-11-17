@@ -10,7 +10,7 @@
               <input type="hidden" name="id" value="{{ $user->id }}">
               <div class="mb-3">
                 <img src="{{ $user->photo }}" alt="photo-user" width="100px">
-                <input type="hidden" class="form-control" id="oldPhoto" value="{{ $user->photo }}" name="oldPhoto" placeholder="Old Photo">
+                <input type="hidden" class="form-control" id="oldPhoto" value="{{ $user->photo }}" name="photo" placeholder="Old Photo">
               </div>
               
               <div class="mb-3">
