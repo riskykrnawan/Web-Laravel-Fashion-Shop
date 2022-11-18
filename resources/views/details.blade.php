@@ -86,27 +86,45 @@
                             </div>
                         </form>
                     </div>
-                    <form action="/carts/add" method="POST" onsubmit="cartAlert()">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input type="hidden" name="item_id" value="{{ $item->id }}">
-                        <div class="d-flex align-items-center mb-4 pt-2">
-                            <div class="input-group quantity mr-3" style="width: 130px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-warning rounded-0 btn-minus">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <input type="text" class="form-control bg-light border-0 text-center" name="quantity" value="1">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-warning rounded-0 btn-plus">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <form class="" action="/carts/add" method="POST" onsubmit="cartAlert()">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+                                    <div class="d-flex align-items-center mb-4 pt-2">
+                                        <div class="input-group quantity mr-3" style="width: 130px;">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-warning rounded-0 btn-minus">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                            </div>
+                                            <input type="text" class="form-control bg-light border-0 text-center" name="quantity" value="1">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-warning rounded-0 btn-plus">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                                    </div>
+                                </form>
                             </div>
-                            <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                            <div class="col">
+                                <form class="pt-2" action="/wishlists/add" method="POST" onsubmit="cartAlert()">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="item_id" value="{{ $item->id }}">
+            
+                                        <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-heart mr-1"> Add To Wishlist</i></button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+
+
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
                         <div class="d-inline-flex">

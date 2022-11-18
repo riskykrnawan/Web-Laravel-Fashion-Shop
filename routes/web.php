@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Banner;
 use App\Models\Item;
 use GuzzleHttp\Client;
@@ -73,6 +74,11 @@ Route::middleware(['auth'])->group(function() {
     Route::post('/carts/add', [CartController::class, 'addToCart']);
     Route::post('/carts/update', [CartController::class, 'updateCart']);
     Route::post('/carts/checkout', [CartController::class, 'checkout']);
+
+    Route::get('/wishlist', [WishlistController::class, 'index']);
+    Route::post('/wishlists/add', [WishlistController::class, 'addToWishlist']);
+    Route::post('/wishlists/update', [WishlistController::class, 'updateWishlist']);
+    Route::delete('/wishlists/delete/{id}', [WishlistController::class, 'destroy'])->name('delete')->middleware('auth');
 });
 // Route::middleware(['auth'])->controller(ItemController3::class)->prefix('wishlist')->group(function() {
 //     Route::get('/', 'index');
