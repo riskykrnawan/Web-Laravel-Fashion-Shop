@@ -27,9 +27,6 @@
           </div>  
         </div>
       @endforeach
-      <div class="w-100 text-end mt-3 mb-3 me-2">
-        <a href="/products" class="text-secondary">Lihat selengkapnya...</a>
-      </div>
     </div>
   </div>
 </main>

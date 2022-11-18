@@ -80,15 +80,6 @@ Route::middleware(['auth', 'authorization:customer'])->group(function() {
     Route::post('/wishlists/update', [WishlistController::class, 'updateWishlist']);
     Route::delete('/wishlists/delete/{id}', [WishlistController::class, 'destroy'])->name('delete')->middleware('auth');
 });
-// Route::middleware(['auth'])->controller(ItemController3::class)->prefix('wishlist')->group(function() {
-//     Route::get('/', 'index');
-//     Route::get('/show/{id}', 'show');
-//     // Route::get('/create', 'create');
-//     // Route::get('/edit/{id}', 'edit');
-//     // Route::post('/update', 'update');
-//     // Route::post('/store', 'store');
-//     // Route::get('/delete/{id}', 'delete');
-// });
 
 
 Route::middleware(['auth', 'authorization:admin'])->prefix('/admin')->group(function (){
@@ -107,10 +98,10 @@ Route::middleware(['auth', 'authorization:admin'])->prefix('/admin')->group(func
     Route::controller(UserController::class)->prefix('/users')->group(function() {
         Route::get('/', 'index');
         Route::get('/show/{id}', 'show');
-        // Route::get('/create', 'create');
+        Route::get('/create', 'create');
         Route::get('/edit/{id}', 'edit');
         Route::post('/update', 'update');
-        // Route::post('/store', 'store');
+        Route::post('/store', 'store');
         // Route::get('/delete/{id}', 'delete');
     });
     Route::controller(OrderController::class)->prefix('/orders')->group(function() {
@@ -126,14 +117,3 @@ Route::middleware(['auth', 'authorization:admin'])->prefix('/admin')->group(func
         );
     });
 });
-
-
-// Route::middleware(['auth'])->get('/test', function () {
-//     $endpoint = env('BASE_ENV') . '/api/admin/products';
-//     $client = new Client();
-
-//     $response = $client->request('GET', $endpoint);
-//     $data = json_decode($response->getBody(), true);
-
-//     return $data;
-// });

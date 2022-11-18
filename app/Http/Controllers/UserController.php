@@ -25,7 +25,16 @@ class UserController extends Controller
         ]);
     }
 
-    public function addUser(Request $request) {
+    public function create()
+    {
+        return view('admin.users.create',
+            [
+                'countPendingOrders' => OrderController::pendingOrders(),
+            ]
+        );
+    }
+
+    public function store(Request $request) {
         $usernameExist = DB::table('users')->where('username', $request->username)->first();
         $emailExist = DB::table('users')->where('email', $request->email)->first();
         if ($usernameExist) {
@@ -36,9 +45,10 @@ class UserController extends Controller
             session()->flash('error', 'Email telah digunakan, gunakan email lain!');
             return redirect('/admin/users');
         }
+        
         if($request->password == $request->confirm_password){
             User::create([
-            'photo' => 'storage/images/person-dummy.jpg',
+            'photo' => $request->photo,
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,

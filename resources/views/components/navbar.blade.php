@@ -62,7 +62,7 @@
           <li class="nav-item my-auto">
             <div class="dropdown fs-5">
               <a class="text-secondary bg-transparent text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ Auth::user()->photo }}" width="35px" class="rounded-circle img-thumbnail" alt="">
+                <img src="{{ Auth::user()->photo }}" width="35px" class="rounded-circle " alt="">
               </a>
             
               <ul class="dropdown-menu">

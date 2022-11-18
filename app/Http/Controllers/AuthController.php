@@ -23,7 +23,7 @@ class AuthController extends Controller
         }
         if($request->password == $request->confirm_password){
             User::create([
-            'photo' => 'storage/images/person-dummy.jpg',
+            'photo' => '/storage/images/person-dummy.jpg',
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,

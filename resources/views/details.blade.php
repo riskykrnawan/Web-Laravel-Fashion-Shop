@@ -86,6 +86,7 @@
                             </div>
                         </form>
                     </div>
+                    {{-- @if (Auth::check()) --}}
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
@@ -117,13 +118,13 @@
                                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                     <input type="hidden" name="item_id" value="{{ $item->id }}">
             
-                                        <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-heart mr-1"> Add To Wishlist</i></button>
-                                    </div>
+                                    <button type="submit" class="btn btn-warning ms-3 px-3 rounded-0"><i class="fa fa-heart mr-1"> Add To Wishlist</i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
+                    {{-- @endif --}}
+                    
 
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>

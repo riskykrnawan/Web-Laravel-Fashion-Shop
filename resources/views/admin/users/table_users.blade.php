@@ -11,13 +11,14 @@
         <th scope="col">Email</th>
         <th scope="col">Email verified at</th>
         <th scope="col">Remember Token</th>
+        <th scope="col">Role</th>
         <th scope="col">Created at</th>
         <th scope="col">Updated at</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody class="">
-      <a href=""> <button class="btn btn-warning rounded-0 px-3 float-end mb-3"><i class="bi bi-plus-lg"></i><span class="ms-2">Add User</span></button></a>
+      <a href="/admin/users/create"> <button class="btn btn-warning rounded-0 px-3 float-end mb-3"><i class="bi bi-plus-lg"></i><span class="ms-2">Add User</span></button></a>
       @foreach ($users as $user)
         <tr role="button">
           
@@ -28,6 +29,7 @@
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->email }}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->email_verified_at}}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->remember_token}}</td>
+          <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ ucfirst($user->role)}}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->created_at }}</td>
           <td class="py-3" onclick=redirectTo("/admin/users/show/{{ $user->id }}")>{{ $user->updated_at }}</td>
           <td class="py-3 front">

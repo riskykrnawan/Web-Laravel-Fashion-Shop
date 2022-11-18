@@ -46,6 +46,10 @@
                 <td>{{ $user->remember_token }}</td>
               </tr>
               <tr>
+                <th scope="row">Role</th>
+                <td>{{ ucfirst($user->role) }}</td>
+              </tr>
+              <tr>
                 <th scope="row">Created at</th>
                 <td>{{ $user->created_at }}</td>
               </tr>
