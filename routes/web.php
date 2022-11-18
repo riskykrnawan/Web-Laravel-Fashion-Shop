@@ -63,7 +63,7 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function (){
 
 
 // Bagian User
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth', 'authorization:customer'])->group(function() {
     Route::get('/profile', [UserController::class, 'userProfile']);
     Route::get('/setting', [UserController::class, 'userSetting']);
     Route::post('/update', [UserController::class, 'userUpdate']);
@@ -91,9 +91,9 @@ Route::middleware(['auth'])->group(function() {
 // });
 
 
-Route::middleware(['auth'])->prefix('/admin')->group(function (){
+Route::middleware(['auth', 'authorization:admin'])->prefix('/admin')->group(function (){
     Route::get('/', function () {
-        return redirect()->route('products');
+        return redirect('/admin/products/page/1');
     });
     Route::controller(ItemController::class)->prefix('/products')->group(function() {
         Route::get('/page/{page}', 'index')->name('products');

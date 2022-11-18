@@ -29,6 +29,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'address' => '-',
             'password' => Hash::make($request->password),
+            'role' => 'customer'
         ]);
             session()->flash('success', 'Berhasil Membuat Akun!');
             return redirect('/');

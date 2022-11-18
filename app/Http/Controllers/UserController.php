@@ -25,6 +25,36 @@ class UserController extends Controller
         ]);
     }
 
+    public function addUser(Request $request) {
+        $usernameExist = DB::table('users')->where('username', $request->username)->first();
+        $emailExist = DB::table('users')->where('email', $request->email)->first();
+        if ($usernameExist) {
+            session()->flash('error', 'Username telah digunakan, gunakan username lain!');
+            return redirect('/admin/users');
+        }
+        if ($emailExist) {
+            session()->flash('error', 'Email telah digunakan, gunakan email lain!');
+            return redirect('/admin/users');
+        }
+        if($request->password == $request->confirm_password){
+            User::create([
+            'photo' => 'storage/images/person-dummy.jpg',
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'address' => '-',
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
+            session()->flash('success', 'Berhasil Membuat Akun!');
+            return redirect('/admin/users');
+        } else{
+            session()->flash('error', 'Konfirmasi password anda berbeda!');
+            return redirect('/admin/users');
+        }
+    }
+
+
     public function show(string $id)
     {
         $user = DB::table('users')->where('id', $id)->get()[0];
