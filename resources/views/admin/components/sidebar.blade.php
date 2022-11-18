@@ -19,7 +19,7 @@
       </li>
       <hr class="me-3 ms-3 mt-2 text-light">
       <li class="nav-item">
-        <a id="products" class="nav-link text-light" href="/admin/products">
+        <a id="products" class="nav-link text-light" href="/admin/products/page/1">
           <span id="products_icon" data-feather="shopping-cart" class="align-text-bottom text-light"></span>
           Products 
           {{-- <span class="badge text-bg-danger float-end">1</span> --}}

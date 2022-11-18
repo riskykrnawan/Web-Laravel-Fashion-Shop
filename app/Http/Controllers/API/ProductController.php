@@ -7,12 +7,12 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProductControllerAPI extends Controller
+class ProductController extends Controller
 {
     public function getItems()
     {
         // mengambil data dari table items
-        $items = DB::table('items')->paginate(10    );
+        $items = DB::table('items')->paginate(10);
 
         $response = [
             'status' => 'success',

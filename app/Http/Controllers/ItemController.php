@@ -11,11 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(string $page)
     {
-        $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
+        // $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
+        $endpoint = env('BASE_ENV') . '/api/admin/products?page=' . $page;
+        $client = new Client();
+
+        $response = $client->request('GET', $endpoint);
+        $items = json_decode($response->getBody(), true);
+
+        // var_dump($items['data']['data']);
+        // exit;
+        // return $items;
         return view('admin.products.index', [
-            'items' => $items,
+            'items' => $items['data'],
             'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
@@ -43,11 +52,10 @@ class ItemController extends Controller
     }
 
     public function create() {
-        return view(
-            'admin.products.create',
-            [
-                'countPendingOrders' => OrderController::pendingOrders(),
-            ]
+        return view('admin.products.create', 
+        [
+            'countPendingOrders' => OrderController::pendingOrders(),
+        ]
         );
     }
     
@@ -74,20 +82,20 @@ class ItemController extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 
     // delete products
     public function delete(string $id)
 	{
         $item = DB::table('items')->where('id', $id);
-        $filename =  substr($item->first()->photo, 1);
+        // $filename =  substr($item->first()->photo, 1);
         // echo base_path($filename);
         // exit;
         // delete photo
         // Storage::delete(base_path('app/public' . $filename));
-        // $item->delete();
-		return redirect('/admin/products');
+        $item->delete();
+		return redirect('/admin/products/page/1');
 	}
 
     // edit products
@@ -124,6 +132,6 @@ class ItemController extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 }

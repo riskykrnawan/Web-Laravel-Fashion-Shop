@@ -4,10 +4,8 @@
       <img src="{{ $item->photo }}" height="200px" class="card-img-top placeholder" alt="...">
       <div class="card-body p-2 placeholder-wave">
         <p class="card-title placeholder">{{ mb_strimwidth($item->name, 0, 56, "...") }}</p>
-        
         <div class="">
-          <i class="bi bi-star-fill text-warning float-start placeholder me-2"></i><p class="placeholder">{{ $item->rating }}</p> 
-          
+          <i class="bi bi-star-fill text-warning float-start placeholder me-2"></i><p class="placeholder">{{ $item->rating }}</p>
         </div>
         {{-- @if ( !Auth::user() ) --}}
           {{-- <i class="bi bi-heart fs-5 me-1 float-end front placeholder " onclick="wishlistAlertFailed()"></i>

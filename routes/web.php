@@ -3,12 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ItemController2;
-use App\Http\Controllers\ItemController3;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserController2;
-use App\Http\Controllers\UserController3;
 use App\Http\Controllers\WishlistController;
 use App\Models\Banner;
 use App\Models\Item;
@@ -16,7 +12,6 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\WishlistController::delete;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,20 +78,16 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/wishlist', [WishlistController::class, 'index']);
     Route::post('/wishlists/add', [WishlistController::class, 'addToWishlist']);
     Route::post('/wishlists/update', [WishlistController::class, 'updateWishlist']);
-    // Route::delete('/wishlists/delete/{id}', [WishlistController::class, 'delete']);
     Route::delete('/wishlists/delete/{id}', [WishlistController::class, 'destroy'])->name('delete')->middleware('auth');
 });
-
-// Route::delete('/wishlists/{id}', [WishlistController::class, 'destroy'])->name('delete')->middleware('auth');
-
-// Route::middleware(['auth'])->controller(WishlistController::class)->prefix('/wishlist')->group(function() {
+// Route::middleware(['auth'])->controller(ItemController3::class)->prefix('wishlist')->group(function() {
 //     Route::get('/', 'index');
 //     Route::get('/show/{id}', 'show');
-//     Route::get('/create', 'create');
-//     Route::get('/edit/{id}', 'edit');
-//     Route::post('/update', 'update');
-//     Route::post('/store', 'store');
-//     Route::get('/delete/{id}', 'delete');
+//     // Route::get('/create', 'create');
+//     // Route::get('/edit/{id}', 'edit');
+//     // Route::post('/update', 'update');
+//     // Route::post('/store', 'store');
+//     // Route::get('/delete/{id}', 'delete');
 // });
 
 
@@ -105,7 +96,7 @@ Route::middleware(['auth'])->prefix('/admin')->group(function (){
         return redirect()->route('products');
     });
     Route::controller(ItemController::class)->prefix('/products')->group(function() {
-        Route::get('/', 'index')->name('products');
+        Route::get('/page/{page}', 'index')->name('products');
         Route::get('/show/{id}', 'show');
         Route::get('/create', 'create');
         Route::get('/edit/{id}', 'edit');
@@ -137,12 +128,12 @@ Route::middleware(['auth'])->prefix('/admin')->group(function (){
 });
 
 
-Route::get('/test', function () {
-    $endpoint = env('BASE_ENV') . '/api/admin/products';
-    $client = new Client();
+// Route::middleware(['auth'])->get('/test', function () {
+//     $endpoint = env('BASE_ENV') . '/api/admin/products';
+//     $client = new Client();
 
-    $response = $client->request('GET', $endpoint);
-    $data = json_decode($response->getBody(), true);
+//     $response = $client->request('GET', $endpoint);
+//     $data = json_decode($response->getBody(), true);
 
-    return $data;
-});
+//     return $data;
+// });

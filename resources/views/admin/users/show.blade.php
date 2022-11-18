@@ -1,8 +1,6 @@
 @extends('admin.layout')
 
 @section('content_admin')
-  <body>
-    
     <div class="container-fluid my-3">
       <div class="row">
         @include('admin.components.sidebar')

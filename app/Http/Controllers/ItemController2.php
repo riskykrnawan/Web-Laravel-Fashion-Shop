@@ -57,7 +57,7 @@ class ItemController2 extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 
     // delete products
@@ -69,7 +69,7 @@ class ItemController2 extends Controller
         // $itemFetch = $item->first();
         // File::delete($itemFetch->photo);
         $item->delete();
-		return redirect('/admin/products');
+		return redirect('/admin/products/page/1');
 	}
 
     // edit products
@@ -103,6 +103,6 @@ class ItemController2 extends Controller
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        return redirect('/admin/products');
+        return redirect('/admin/products/page/1');
     }
 }

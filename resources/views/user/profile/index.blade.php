@@ -3,7 +3,7 @@
 <main class="container mt-5">
   <div class="row">
     <div class="col-md-12 mt-2 m-auto text-center">
-      <img src="https://mdbootstrap.com/images/avatars/img%20(1).jpg" alt="" class="rounded-circle img-thumbnail border-primary">
+      <img src="{{ Auth::user()->photo }}" alt="" width="200px" class="rounded-circle img-thumbnail border-primary">
       <h3 class="h3-responsive">{{ '@' . Auth::user()->username }}</h3>
       <p class="fs-4 mt-2">{{ Auth::user()->name }}</p>
     </div>

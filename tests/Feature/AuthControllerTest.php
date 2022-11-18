@@ -17,6 +17,7 @@ class AuthControllerTest extends TestCase
     {
         $this->post('/auth/register', [
             'id' => '999',
+            'username' => 'sebuah username',
             'name' => 'sebuah nama',
             'email' => 'sebuah@email.com',
             'password' => 'sebuahpassword',
@@ -28,7 +29,7 @@ class AuthControllerTest extends TestCase
         $this->post('/auth/login', [
             'email' => 'sebuah@email.com',
             'password' => 'sebuahpassword',
-        ])->assertStatus(302)->assertRedirect('/admin/products');
+        ])->assertStatus(302)->assertRedirect('/admin/orders');
     }
     // public function testDeleteAfterLogin()
     // {
