@@ -1,3 +1,31 @@
+# NIKKY Fashion Shop
+
+Ini adalah aplikasi berbasis website yang dapat digunakan untuk menjual barang secara online
+
+| Table of Contents  |
+| :----------------  |
+| <a href="#Feature">Feature</a>     |
+| <a href="#Development">Development</a>     |
+
+<!-- | <a href="#Technology">Technology</a>     | -->
+
+## Feature
+
+Aplikasi ini menyediakan fitur sebagai berikut:
+
+
+| Feature                                                        | Customer | Admin  |
+| -------------------------------------------------------------- | :-: | :-: |
+| Home (Halaman utama untuk menampilkan barang, promo, dll)      | ✅ | ✅ |
+| Login & Register                                               | ✅ | ✅ |
+| Wishlist                                                       | ✅ | ❌ |
+| Cart                                                           | ✅ | ❌ |
+| History Order                                                  | ✅ | ❌ |
+| Profile                                                        | ✅ | ❌ |
+| Panel Products                                                 | ❌ | ✅ |
+| Panel User                                                     | ❌ | ✅ |
+| Panel Orders (Menerima / menolak orderan dari pelanggan)       | ❌ | ✅ |
+
 ## Development
 
 ```bash
