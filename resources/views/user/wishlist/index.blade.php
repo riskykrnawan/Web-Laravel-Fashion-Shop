@@ -4,7 +4,7 @@
         <!-- Breadcrumb Start -->
             <div class="row mt-4">
                 <div class="col-12">
-                    <nav class="breadcrumb bg-white mb-5 py-3 px-3">
+                    <nav class="breadcrumb mb-4 py-3 px-3">
                         <a class="breadcrumb-item text-dark" href="#">Home</a>
                         <a class="breadcrumb-item text-dark" href="#">Products</a>
                         <span class="breadcrumb-item active">Wishlist</span>
@@ -13,8 +13,8 @@
             </div>
         <!-- Breadcrumb End -->
         <!-- wl Start -->
-          <div class="container text-justify pt-5 mb-5">
-            <h2 class="text-uppercase fs-5 text-secondary">{{ Auth::user()->username }}'s Wishlist</h2>
+          <div class="container text-justify mb-5">
+            <h2 class="text-uppercase fs-5 text-secondary">Your Wishlist</h2>
             <hr width="70px">
             <div class="row justify-content-sm-center">
             {{-- @php
@@ -27,7 +27,7 @@
                   <div class="card border-1 border-light shadow-sm position-relative" role="button" onclick="redirectTo('/products/show/{{ $wl->item->id }}')">
                     <img src="{{ $wl->item->photo }}" height="200px" class="card-img-top placeholder" alt="...">
                     <div class="card-body p-2 placeholder-wave">
-                      <p class="card-title placeholder">{{ mb_strimwidth($wl->item->name, 0, 30, "...") }}</p>
+                      <p class="placeholder">{{ mb_strimwidth($wl->item->name, 0, 40, "...") }}</p>
 
                       <div class="">
                         <i class="bi bi-star-fill text-warning float-start placeholder me-2"></i><p class="placeholder">{{ $wl->item->rating }}</p> 

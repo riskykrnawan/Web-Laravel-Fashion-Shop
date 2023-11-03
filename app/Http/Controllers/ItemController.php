@@ -13,18 +13,17 @@ class ItemController extends Controller
 {
     public function index(string $page)
     {
-        // $items = DB::table('items')->orderByDesc('updated_at')->paginate(10);
-        $endpoint = env('BASE_ENV') . '/api/admin/products?page=' . $page;
-        $client = new Client();
+        $items = DB::table('items')->paginate(10);
+        // return $items[0]->id;
+        // example using API (add BASE_ENV=localhost:8001)
+        // $endpoint = env('BASE_ENV') . '/api/admin/products?page=' . $page;
+        // $client = new Client();
 
-        $response = $client->request('GET', $endpoint);
-        $items = json_decode($response->getBody(), true);
+        // $response = $client->request('GET', $endpoint);
+        // $items = json_decode($response->getBody(), true);
 
-        // var_dump($items['data']['data']);
-        // exit;
-        // return $items;
         return view('admin.products.index', [
-            'items' => $items['data'],
+            'items' => $items,
             'countPendingOrders' => OrderController::pendingOrders(),
         ]);
     }
