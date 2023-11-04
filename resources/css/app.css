@@ -10,6 +10,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.hidden-radio[type='radio'] {
+  display: none; 
+}
+
+.hidden-checkbox[type='checkbox'] {
+  display: none; 
+}
 /* navbar */
 .brand {
   color: #000;

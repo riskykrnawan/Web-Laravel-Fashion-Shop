@@ -15,6 +15,70 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+    <script>
+      $(document).ready(function() {
+        // Tambahkan event handler untuk radio buttons
+        $('input[type="radio"]').change(function() {
+          // Hapus latar belakang dari semua label
+          $('label').removeClass('bg-warning');
+          
+          // Tambahkan latar belakang pada radio button yang sekarang di-check
+          $(this).next('label').addClass('bg-warning');
+          
+          // Uncheck radio button jika di-check kembali
+          if ($(this).hasClass('checked')) {
+            $(this).prop('checked', false);
+            $(this).removeClass('checked');
+          } else {
+            $(this).addClass('checked');
+          }
+        });
+        
+        // Tambahkan event handler untuk checkboxes
+        $('input[type="checkbox"]').change(function() {
+          // Toggle latar belakang label saat checkbox di-check atau unchecked
+          $(this).next('label').toggleClass('bg-warning');
+        });
+
+        $("#addSize").click(function() {
+            const newSizeValue = $("#newSize").val();
+            if (newSizeValue) {
+                const radioInput = $("<input>")
+                    .attr("type", "radio")
+                    .attr("class", "form-check-input mt-2 hidden-radio")
+                    .attr("name", "size")
+                    .attr("value", "true")
+                    .attr("id", newSizeValue.toLowerCase());
+                const radioLabel = $("<label>")
+                    .attr("class", "px-3 py-1 border me-1 mt-1")
+                    .attr("for", "size_" + ($("#sizeContainer input[type='radio']").length + 1))
+                    .text(newSizeValue);
+                $("#sizeContainer").append(radioInput).append(radioLabel);
+                $("#newSize").val("");
+            }
+        });
+
+        $("#addColor").click(function() {
+            const newColorValue = $("#newColor").val();
+            if (newColorValue) {
+                const checkboxInput = $("<input>")
+                    .attr("type", "checkbox")
+                    .attr("class", "form-check-input hidden-checkbox")
+                    .attr("name", "color")
+                    .attr("value", "true")
+                    .attr("id", "color_" + ($("#colorContainer input[type='checkbox']").length + 1));
+                const checkboxLabel = $("<label>")
+                    .attr("class", "px-3 py-1 border me-1 mt-1")
+                    .attr("for", "color_" + ($("#colorContainer input[type='checkbox']").length + 1))
+                    .text(newColorValue);
+                $("#colorContainer").append(checkboxInput).append(checkboxLabel);
+                $("#newColor").val("");
+            }
+        });
+      });
+    </script>
+
     <script>
       const pathname = window.location.pathname;
       switch(pathname) {
