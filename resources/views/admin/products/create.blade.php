@@ -36,73 +36,76 @@
 
               <div id="sizeContainer" class="mt-2 mb-3 pt-2">
                   <p>Size</p>
-                  <div class="my-2">
+                  <!-- <div class="my-2">
+                    Add Size nanti dipakai di fitur selanjutnya
                     <input class="px-2 py-1 border" type="text" id="newSize" placeholder="Add new size">
                     <button type="button" id="addSize" class="px-3 py-1 border bg-white">+</button>
-                  </div>
+                  </div> -->
                   <!-- question_id sebagai index, dan question_choice_id sebagai valuenya -->
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_1" value="true">
-                  <label class="px-3 py-1 border" for="size_1">XS</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_xs" value="xs">
+                  <label class="px-3 py-1 border" for="size_xs">XS</label>
 
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_2" value="true">
-                  <label class="px-3 py-1 border" for="size_2">S</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_s" value="s">
+                  <label class="px-3 py-1 border" for="size_s">S</label>
 
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_3" value="true">
-                  <label class="px-3 py-1 border" for="size_3">M</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_m" value="m">
+                  <label class="px-3 py-1 border" for="size_m">M</label>
 
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_4" value="true">
-                  <label class="px-3 py-1 border" for="size_4">L</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_l" value="l">
+                  <label class="px-3 py-1 border" for="size_l">L</label>
 
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_5" value="true">
-                  <label class="px-3 py-1 border" for="size_5">XL</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_xl" value="xl">
+                  <label class="px-3 py-1 border" for="size_xl">XL</label>
 
-                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_6" value="true">
-                  <label class="px-3 py-1 border" for="size_6">XXL</label>
+                  <input class="form-check-input mt-2 hidden-radio" type="radio" name="size" id="size_xxl" value="xxl">
+                  <label class="px-3 py-1 border" for="size_xxl">XXL</label>
               </div>
 
               <div id="colorContainer" class="mt-2">
                   <p>Colors</p>
 
-                  <div class="my-2">
+                  <!-- <div class="my-2">
+                    Add color nanti dipakai di fitur selanjutnya
                     <input class="px-2 py-1 border" type="text" id="newColor" placeholder="Add new color">
                     <button type="button" id="addColor" class="px-3 py-1 border bg-white">+</button>
-                  </div>
+                  </div> -->
 
                   <!-- question_id sebagai index, dan question_choice_id sebagai valuenya -->
-                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_1" value="true">
-                  <label class="px-3 py-1 border" for="color_1">Merah</label>
+                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_merah" value="merah">
+                  <label class="px-3 py-1 border" for="color_merah">Merah</label>
 
-                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_2" value="true">
-                  <label class="px-3 py-1 border" for="color_2">Kuning</label>
+                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_kuning" value="kuning">
+                  <label class="px-3 py-1 border" for="color_kuning">Kuning</label>
 
-                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_3" value="true">
-                  <label class="px-3 py-1 border" for="color_3">Hijau</label>
+                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_hijau" value="hijau">
+                  <label class="px-3 py-1 border" for="color_hijau">Hijau</label>
 
-                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_4" value="true">
-                  <label class="px-3 py-1 border" for="color_4">Biru</label>
+                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_biru" value="biru">
+                  <label class="px-3 py-1 border" for="color_biru">Biru</label>
 
-                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_5" value="true">
-                  <label class="px-3 py-1 border" for="color_5">Hitam</label>
+                  <input class="form-check-input hidden-checkbox" type="checkbox" name="color" id="color_hitam" value="hitam">
+                  <label class="px-3 py-1 border" for="color_hitam">Hitam</label>
               </div>
 
               <div class="mb-3 mt-4">
                 <div class="row">
-                  <div class="col-2">
+                  <div class="col-md-2">
                     <p>Size & Color</p>
-                    <input class="form-check-input hidden-radio" type="radio" name="xs" id="xs" value="true">
+                    <input class="form-check-input hidden-radio" type="radio" disabled>
                     <label class="px-3 py-1 border" for="xs">XS</label>
 
-                    <input class="form-check-input hidden-radio" type="radio" name="merah" id="merah" value="true">
+                    <input class="form-check-input hidden-radio" type="radio" disabled>
                     <label class="px-3 py-1 border" for="merah">Merah</label>
                   </div>
 
-                  <div class="col-5"><label for="stock" class="form-label">Stock</label>
+                  <div class="col-md-5">
+                    <label for="stock" class="form-label">Stock</label>
                     <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" required aria-required="true">
                   </div>
 
-                  <div class="col-5">
-                  <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Price" required aria-required="true">
+                  <div class="col-md-5">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Price" required aria-required="true">
                   </div>
                 </div>
               </div>

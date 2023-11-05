@@ -17,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
     <script>
+      const colorChoices = []
       $(document).ready(function() {
         // Tambahkan event handler untuk radio buttons
         $('input[type="radio"]').change(function() {
@@ -25,6 +26,14 @@
           
           // Tambahkan latar belakang pada radio button yang sekarang di-check
           $(this).next('label').addClass('bg-warning');
+          const sizeActive = $('input[type="radio"]:checked').val();
+          const colorChoicesBySize = colorChoices[sizeActive];
+          
+          if(colorChoicesBySize) {
+            colorChoicesBySize.forEach((colorId) => {
+              $(`#color_${colorId}`).next('label').addClass('bg-warning');
+            })
+          }
           
           // Uncheck radio button jika di-check kembali
           if ($(this).hasClass('checked')) {
@@ -37,45 +46,68 @@
         
         // Tambahkan event handler untuk checkboxes
         $('input[type="checkbox"]').change(function() {
-          // Toggle latar belakang label saat checkbox di-check atau unchecked
-          $(this).next('label').toggleClass('bg-warning');
+          if ($(this).hasClass('bg-warning')) {
+            $(this).prop('bg-warning', false);
+            $(this).next('label').removeClass('bg-warning');
+          } else {
+            var colorValue = $(this).val();
+            var sizeValue = $('input[type="radio"]:checked').val(); // Mengambil ukuran yang sedang aktif
+
+            if (sizeValue) {
+              $(this).next('label').addClass('bg-warning');
+              // Periksa apakah ukuran tersebut sudah memiliki daftar warna, jika belum, buat array baru
+              if (!colorChoices[sizeValue]) {
+                colorChoices[sizeValue] = [];
+              }
+
+              // Tambahkan warna ke dalam array warna untuk ukuran tersebut jika belum ada
+              if (colorChoices[sizeValue].indexOf(colorValue) === -1) {
+                colorChoices[sizeValue].push(colorValue);
+              }
+
+              // Tampilkan objek colorChoices
+              console.log(colorChoices);
+            } else {
+              failedAddColorAlert();
+            }
+          }
         });
 
-        $("#addSize").click(function() {
-            const newSizeValue = $("#newSize").val();
-            if (newSizeValue) {
-                const radioInput = $("<input>")
-                    .attr("type", "radio")
-                    .attr("class", "form-check-input mt-2 hidden-radio")
-                    .attr("name", "size")
-                    .attr("value", "true")
-                    .attr("id", newSizeValue.toLowerCase());
-                const radioLabel = $("<label>")
-                    .attr("class", "px-3 py-1 border me-1 mt-1")
-                    .attr("for", "size_" + ($("#sizeContainer input[type='radio']").length + 1))
-                    .text(newSizeValue);
-                $("#sizeContainer").append(radioInput).append(radioLabel);
-                $("#newSize").val("");
-            }
-        });
+        // $("#addSize").click(function() {
+        //     const newSizeValue = $("#newSize").val();
+        //     if (newSizeValue) {
+        //         const radioInput = $("<input>")
+        //             .attr("type", "radio")
+        //             .attr("class", "form-check-input mt-2 hidden-radio")
+        //             .attr("name", "size")
+        //             .attr("value", newSizeValue.toLowerCase())
+        //             .attr("id", "size_" + ($("#sizeContainer input[type='radio']").length + 1));
+        //         const radioLabel = $("<label>")
+        //             .attr("class", "px-3 py-1 border me-1 mt-1")
+        //             .attr("for", "size_" + ($("#sizeContainer input[type='radio']").length + 1))
+        //             .text(newSizeValue);
+        //         $("#sizeContainer").append(radioInput).append(radioLabel);
+        //         $("#newSize").val("");
+        //     }
+        // });
 
-        $("#addColor").click(function() {
-            const newColorValue = $("#newColor").val();
-            if (newColorValue) {
-                const checkboxInput = $("<input>")
-                    .attr("type", "checkbox")
-                    .attr("class", "form-check-input hidden-checkbox")
-                    .attr("name", "color")
-                    .attr("value", "true")
-                    .attr("id", "color_" + ($("#colorContainer input[type='checkbox']").length + 1));
-                const checkboxLabel = $("<label>")
-                    .attr("class", "px-3 py-1 border me-1 mt-1")
-                    .attr("for", "color_" + ($("#colorContainer input[type='checkbox']").length + 1))
-                    .text(newColorValue);
-                $("#colorContainer").append(checkboxInput).append(checkboxLabel);
-                $("#newColor").val("");
-            }
-        });
+        // $("#addColor").click(function() {
+        //     const newColorValue = $("#newColor").val();
+        //     if (newColorValue) {
+        //         const checkboxInput = $("<input>")
+        //             .attr("type", "checkbox")
+        //             .attr("class", "form-check-input hidden-checkbox")
+        //             .attr("name", "color")
+        //             .attr("value", newColorValue.toLowerCase())
+        //             .attr("id", "color_" + ($("#colorContainer input[type='checkbox']").length + 1));
+        //         const checkboxLabel = $("<label>")
+        //             .attr("class", "px-3 py-1 border me-1 mt-1")
+        //             .attr("for", "color_" + ($("#colorContainer input[type='checkbox']").length + 1))
+        //             .text(newColorValue);
+        //         $("#colorContainer").append(checkboxInput).append(checkboxLabel);
+        //         $("#newColor").val("");
+        //     }
+        // });
       });
     </script>
 
@@ -110,6 +142,7 @@
             $('#products_icon').addClass('text-warning');
         }
     </script>
+
     <script>
       const alert = (url) => {
         Swal.fire({
@@ -167,6 +200,14 @@
           icon: 'error',
           title: 'Oops...',
           text: 'Can\'t delete items that have been purchased before',
+        });
+      };
+
+      const failedAddColorAlert = () => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Can\'t choose the color before choosing the size',
         });
       };
     </script>
