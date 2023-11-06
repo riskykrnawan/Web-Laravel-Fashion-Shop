@@ -87,29 +87,8 @@
                   <label class="px-3 py-1 border" for="color_hitam">Hitam</label>
               </div>
 
-              <div class="mb-3 mt-4">
-                <div class="row">
-                  <div class="col-md-2">
-                    <p>Size & Color</p>
-                    <input class="form-check-input hidden-radio" type="radio" disabled>
-                    <label class="px-3 py-1 border" for="xs">XS</label>
+              <div id="container" class="mb-3 mt-4"> </div>
 
-                    <input class="form-check-input hidden-radio" type="radio" disabled>
-                    <label class="px-3 py-1 border" for="merah">Merah</label>
-                  </div>
-
-                  <div class="col-md-5">
-                    <label for="stock" class="form-label">Stock</label>
-                    <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock" required aria-required="true">
-                  </div>
-
-                  <div class="col-md-5">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Price" required aria-required="true">
-                  </div>
-                </div>
-              </div>
-              
               <button id='btn-submit' type="submit" class="btn btn-success float-end">Submit</button>
             </form>
         </main>

@@ -17,25 +17,33 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
     <script>
-      const colorChoices = []
+      var colorChoices = {};
+
       $(document).ready(function() {
-        // Tambahkan event handler untuk radio buttons
         $('input[type="radio"]').change(function() {
-          // Hapus latar belakang dari semua label
           $('label').removeClass('bg-warning');
           
-          // Tambahkan latar belakang pada radio button yang sekarang di-check
           $(this).next('label').addClass('bg-warning');
+          
           const sizeActive = $('input[type="radio"]:checked').val();
-          const colorChoicesBySize = colorChoices[sizeActive];
+          const colorChoicesBySize = colorChoices[sizeActive] || [];
           
-          if(colorChoicesBySize) {
-            colorChoicesBySize.forEach((colorId) => {
-              $(`#color_${colorId}`).next('label').addClass('bg-warning');
-            })
-          }
-          
-          // Uncheck radio button jika di-check kembali
+          colorChoicesBySize.forEach((colorId) => {
+            $(`#color_${colorId}`).next('label').addClass('bg-warning');
+          });
+
+          // Perbarui warna yang dipilih saat beralih ukuran
+          $('input[type="checkbox"]').each(function() {
+            const colorValue = $(this).val();
+            if (colorChoicesBySize.includes(colorValue)) {
+              $(this).next('label').addClass('bg-warning');
+              $(this).prop('checked', true);
+            } else {
+              $(this).next('label').removeClass('bg-warning');
+              $(this).prop('checked', false);
+            }
+          });
+
           if ($(this).hasClass('checked')) {
             $(this).prop('checked', false);
             $(this).removeClass('checked');
@@ -44,71 +52,67 @@
           }
         });
         
-        // Tambahkan event handler untuk checkboxes
         $('input[type="checkbox"]').change(function() {
-          if ($(this).hasClass('bg-warning')) {
-            $(this).prop('bg-warning', false);
-            $(this).next('label').removeClass('bg-warning');
-          } else {
-            var colorValue = $(this).val();
-            var sizeValue = $('input[type="radio"]:checked').val(); // Mengambil ukuran yang sedang aktif
+          const colorValue = $(this).val();
+          const sizeValue = $('input[type="radio"]:checked').val();
 
-            if (sizeValue) {
-              $(this).next('label').addClass('bg-warning');
-              // Periksa apakah ukuran tersebut sudah memiliki daftar warna, jika belum, buat array baru
-              if (!colorChoices[sizeValue]) {
-                colorChoices[sizeValue] = [];
-              }
+          if (sizeValue) {
+            if (!colorChoices[sizeValue]) {
+              colorChoices[sizeValue] = [];
+            }
 
-              // Tambahkan warna ke dalam array warna untuk ukuran tersebut jika belum ada
-              if (colorChoices[sizeValue].indexOf(colorValue) === -1) {
+            if ($(this).is(':checked')) {
+              if (!colorChoices[sizeValue].includes(colorValue)) {
                 colorChoices[sizeValue].push(colorValue);
               }
-
-              // Tampilkan objek colorChoices
-              console.log(colorChoices);
+              $(this).next('label').addClass('bg-warning');
+              
+              createInputForColor(sizeValue, colorValue)
             } else {
-              failedAddColorAlert();
+              const indexToRemove = colorChoices[sizeValue].indexOf(colorValue);
+              if (indexToRemove !== -1) {
+                colorChoices[sizeValue].splice(indexToRemove, 1);
+              }
+              $(this).next('label').removeClass('bg-warning');
+
+              removeInputForColor(sizeValue, colorValue);
             }
+          } else {
+            failedAddColorAlert();
           }
+
+          console.log(colorChoices);
         });
-
-        // $("#addSize").click(function() {
-        //     const newSizeValue = $("#newSize").val();
-        //     if (newSizeValue) {
-        //         const radioInput = $("<input>")
-        //             .attr("type", "radio")
-        //             .attr("class", "form-check-input mt-2 hidden-radio")
-        //             .attr("name", "size")
-        //             .attr("value", newSizeValue.toLowerCase())
-        //             .attr("id", "size_" + ($("#sizeContainer input[type='radio']").length + 1));
-        //         const radioLabel = $("<label>")
-        //             .attr("class", "px-3 py-1 border me-1 mt-1")
-        //             .attr("for", "size_" + ($("#sizeContainer input[type='radio']").length + 1))
-        //             .text(newSizeValue);
-        //         $("#sizeContainer").append(radioInput).append(radioLabel);
-        //         $("#newSize").val("");
-        //     }
-        // });
-
-        // $("#addColor").click(function() {
-        //     const newColorValue = $("#newColor").val();
-        //     if (newColorValue) {
-        //         const checkboxInput = $("<input>")
-        //             .attr("type", "checkbox")
-        //             .attr("class", "form-check-input hidden-checkbox")
-        //             .attr("name", "color")
-        //             .attr("value", newColorValue.toLowerCase())
-        //             .attr("id", "color_" + ($("#colorContainer input[type='checkbox']").length + 1));
-        //         const checkboxLabel = $("<label>")
-        //             .attr("class", "px-3 py-1 border me-1 mt-1")
-        //             .attr("for", "color_" + ($("#colorContainer input[type='checkbox']").length + 1))
-        //             .text(newColorValue);
-        //         $("#colorContainer").append(checkboxInput).append(checkboxLabel);
-        //         $("#newColor").val("");
-        //     }
-        // });
       });
+
+      // Fungsi untuk membuat input sesuai dengan warna
+      function createInputForColor(size, color) {
+        const rowDiv = $(`<div id="${size + color}" class="row my-3"></div>`);
+
+        const leftColDiv = $('<div class="col-sm-4 col-md-2"></div>');
+        leftColDiv.append('<p>Size & Color</p>');
+        leftColDiv.append(`<span class="px-3 py-2 border bg-white me-1">${size.toUpperCase()}</span>`);
+        leftColDiv.append(`<span class="px-3 py-2 border bg-white">${color[0].toUpperCase() + color.substring(1)}</span>`);
+
+        const middleColDiv = $('<div class="col-sm-4 col-md-5"></div>');
+        middleColDiv.append('<label for="stock" class="form-label">Stock</label>');
+        middleColDiv.append('<input type="number" class="form-control" id="stock" name="stock[]" placeholder="Stock" required aria-required="true">');
+
+        const rightColDiv = $('<div class="col-sm-4 col-md-5"></div>');
+        rightColDiv.append('<label for="price" class="form-label">Price</label>');
+        rightColDiv.append('<input type="number" class="form-control" id="price" name="price[]" placeholder="Price" required aria-required="true">');
+
+        rowDiv.append(leftColDiv);
+        rowDiv.append(middleColDiv);
+        rowDiv.append(rightColDiv);
+
+        $('#container').append(rowDiv);
+      }
+
+      // Fungsi untuk menghapus input sesuai dengan warna
+      function removeInputForColor(size, color) {
+        $(`#${size + color}`).remove();
+      }
     </script>
 
     <script>
