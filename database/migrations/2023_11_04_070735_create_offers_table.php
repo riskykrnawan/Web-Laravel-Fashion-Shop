@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->string('photo_url');
+            $table->string('redirect_url');
             $table->timestamps();
         });
     }

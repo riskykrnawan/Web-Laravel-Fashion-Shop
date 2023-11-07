@@ -84,30 +84,33 @@
         });
       });
 
-      // Fungsi untuk membuat input sesuai dengan warna
       function createInputForColor(size, color) {
         const rowDiv = $(`<div id="${size + color}" class="row my-3"></div>`);
 
-        const leftColDiv = $('<div class="col-sm-4 col-md-2"></div>');
+        const leftColDiv = $('<div class="col-sm-3 col-md-2"></div>');
         leftColDiv.append('<p>Size & Color</p>');
         leftColDiv.append(`<span class="px-3 py-2 border bg-white me-1">${size.toUpperCase()}</span>`);
         leftColDiv.append(`<span class="px-3 py-2 border bg-white">${color[0].toUpperCase() + color.substring(1)}</span>`);
 
-        const middleColDiv = $('<div class="col-sm-4 col-md-5"></div>');
-        middleColDiv.append('<label for="stock" class="form-label">Stock</label>');
-        middleColDiv.append('<input type="number" class="form-control" id="stock" name="stock[]" placeholder="Stock" required aria-required="true">');
+        const middle1ColDiv = $('<div class="col-sm-3 col-md-4"></div>');
+        middle1ColDiv.append('<label for="photo" class="form-label">Photo (Optional)</label>');
+        middle1ColDiv.append('<input type="file" class="form-control" id="photo" name="photo[]" placeholder="Product photo">');
+        
+        const middle2ColDiv = $('<div class="col-sm-3 col-md-3"></div>');
+        middle2ColDiv.append('<label for="stock" class="form-label">Stock</label>');
+        middle2ColDiv.append('<input type="number" class="form-control" id="stock" name="stock[]" placeholder="Stock" required aria-required="true">');
 
-        const rightColDiv = $('<div class="col-sm-4 col-md-5"></div>');
+        const rightColDiv = $('<div class="col-sm-3 col-md-3"></div>');
         rightColDiv.append('<label for="price" class="form-label">Price</label>');
         rightColDiv.append('<input type="number" class="form-control" id="price" name="price[]" placeholder="Price" required aria-required="true">');
 
         rowDiv.append(leftColDiv);
-        rowDiv.append(middleColDiv);
+        rowDiv.append(middle1ColDiv);
+        rowDiv.append(middle2ColDiv);
         rowDiv.append(rightColDiv);
 
         $('#container').append(rowDiv);
       }
-
       // Fungsi untuk menghapus input sesuai dengan warna
       function removeInputForColor(size, color) {
         $(`#${size + color}`).remove();
