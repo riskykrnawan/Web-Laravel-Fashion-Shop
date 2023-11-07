@@ -10,7 +10,7 @@
               {{ csrf_field() }}
               <div class="mb-3">
                 <label for="photo" class="form-label">Product photo</label>
-                <input type="file" class="form-control" id="photo" name="photo" placeholder="Product photo" required aria-required="true">
+                <input type="file" class="form-control" id="photo" name="photo" placeholder="Product photo" required aria-required="true" multiple>
               </div>
               <div class="mb-3">
                 <label for="name" class="form-label">Product Name</label>

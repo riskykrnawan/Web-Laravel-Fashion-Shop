@@ -45,7 +45,6 @@
           });
 
           if ($(this).hasClass('checked')) {
-            $(this).prop('checked', false);
             $(this).removeClass('checked');
           } else {
             $(this).addClass('checked');
